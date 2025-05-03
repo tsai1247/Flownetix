@@ -37,7 +37,7 @@
         <v-spacer class="my-2" />
       </div>
     </v-navigation-drawer>
-    <v-main>
+    <v-main class="pa-0 ma-5">
       <v-app-bar class="elevation-0 text-primary" color="secondary" prominent>
         <v-toolbar-title>{{ title }}</v-toolbar-title>
         <v-spacer />
