@@ -19,7 +19,7 @@
           link
           :prepend-icon="item.icon"
           rounded="lg"
-          :title="item.title"
+          :title="$t(item.value)"
           :to="item.path"
         />
       </div>
@@ -31,7 +31,7 @@
           link
           :prepend-icon="item.icon"
           rounded="lg"
-          :title="item.title"
+          :title="$t(item.value)"
           :to="item.path"
         />
         <v-spacer class="my-2" />
@@ -88,22 +88,22 @@
 
   const routeInfo = ref([
     {
-      title: 'Snapshot',
+      value: 'snapshot',
       icon: 'mdi-view-dashboard',
       path: '/snapshot',
     },
     {
-      title: 'Prediction',
+      value: 'prediction',
       icon: 'mdi-chart-bar',
       path: '/prediction',
     },
     {
-      title: 'Cash Flow',
+      value: 'cashFlow',
       icon: 'mdi-chart-line-variant',
       path: '/cash-flow',
     },
     {
-      title: 'Asset Manager',
+      value: 'assetManager',
       icon: 'mdi-bank',
       path: '/asset-manager',
     },
@@ -111,12 +111,12 @@
 
   const preferenceInfo = ref([
     {
-      title: 'Settings',
+      value: 'settings',
       icon: 'mdi-cog',
       path: '/settings',
     },
     {
-      title: 'Help',
+      value: 'help',
       icon: 'mdi-help-circle',
       path: '/help',
     },
