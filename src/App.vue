@@ -4,16 +4,14 @@
       <v-spacer />
       <!-- logo and title -->
       <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6 font-weight-medium">
-            <v-icon class="mr-2">mdi-bank</v-icon>
-            <span class="text-black">{{ title }}</span>
-          </v-list-item-title>
-        </v-list-item-content>
+        <v-list-item-title class="text-h6 font-weight-medium">
+          <v-icon class="mr-2">mdi-bank</v-icon>
+          <span class="text-black">{{ title }}</span>
+        </v-list-item-title>
       </v-list-item>
       <v-spacer class="ma-3" />
       <!-- navigation items -->
-      <v-list-item-group>
+      <div>
         <v-list-item
           v-for="(item, index) in routeInfo"
           :key="index"
@@ -24,8 +22,8 @@
           :title="item.title"
           :to="item.path"
         />
-      </v-list-item-group>
-      <v-list-item-group class="position-absolute bottom-0">
+      </div>
+      <div class="position-absolute bottom-0">
         <v-list-item
           v-for="(item, index) in preferenceInfo"
           :key="index"
@@ -37,7 +35,7 @@
           :to="item.path"
         />
         <v-spacer class="my-2" />
-      </v-list-item-group>
+      </div>
     </v-navigation-drawer>
     <v-main>
       <v-app-bar class="elevation-0 text-primary" color="secondary" prominent>
