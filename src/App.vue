@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" :locale="current">
     <v-navigation-drawer v-model="isDrawerOpen" color="primary px-2 pa-4" permanent>
       <v-spacer />
       <!-- logo and title -->
@@ -43,6 +43,32 @@
       <v-app-bar class="elevation-0 text-primary" color="secondary" prominent>
         <v-toolbar-title>{{ title }}</v-toolbar-title>
         <v-spacer />
+
+        <v-menu offset-y>
+          <template #activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              class="mx-2 py-3"
+              link
+              rounded="lg"
+            >
+              <v-list-item-title>
+                <v-icon>mdi-translate</v-icon>
+                <span class="ml-2">{{ currentLocale }}</span>
+              </v-list-item-title>
+            </v-list-item>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(locale, index) in locales"
+              :key="index"
+              @click="changeLocale(locale)"
+            >
+              <v-list-item-title>{{ locale.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
         <v-btn icon>
           <v-icon>mdi-bell</v-icon> <!-- Notification Icon -->
         </v-btn>
@@ -56,7 +82,9 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
+  import { useLocale } from 'vuetify'
+  const { current } = useLocale()
   const title = ref('Nexus Finance');
   const isDrawerOpen = ref(true);
 
@@ -96,5 +124,30 @@
     },
   ]);
 
+  // Language selection
+  interface Locale {
+    title: string;
+    key: string;
+  }
+
+  const locales = ref<Locale[]>([
+    {
+      title: 'English',
+      key: 'en',
+    },
+    {
+      title: '繁體中文',
+      key: 'zhHant',
+    },
+  ]);
+
+  const currentLocale = computed(() => {
+    const locale = locales.value.find(locale => locale.key === current.value);
+    return locale ? locale.title : 'English';
+  });
+
+  function changeLocale (locale: Locale) {
+    current.value = locale.key;
+  }
 </script>
 <style scoped></style>
