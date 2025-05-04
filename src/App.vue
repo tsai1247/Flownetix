@@ -121,7 +121,7 @@
       path: '/help',
     },
     {
-      value: 'about',
+      value: 'about.navigator',
       icon: 'mdi-information',
       path: '/about',
     },
