@@ -5,6 +5,7 @@ export default {
   assetManager: '資產管理',
   settings: '設定',
   help: '幫助',
+  about: '關於',
   title: {
     snapshot: '財務快照',
     cashFlow: '現金流管理',
@@ -12,5 +13,6 @@ export default {
     assetManager: '資產管理',
     settings: '設定',
     help: '幫助',
+    about: '關於',
   },
 }

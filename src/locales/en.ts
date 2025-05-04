@@ -5,6 +5,7 @@ export default {
   assetManager: 'Asset Manager',
   settings: 'Settings',
   help: 'Help',
+  about: 'About',
   title: {
     snapshot: 'Financial Snapshot',
     cashFlow: 'Cash Flow Management',
@@ -12,6 +13,7 @@ export default {
     assetManager: 'Asset Management',
     settings: 'Settings',
     help: 'Help',
+    about: 'About',
   },
   home: {
     title: 'Welcome to Nexus Finance',
