@@ -120,6 +120,11 @@
       icon: 'mdi-help-circle',
       path: '/help',
     },
+    {
+      value: 'about.navigator',
+      icon: 'mdi-information',
+      path: '/about',
+    },
   ]);
 
   // Language selection

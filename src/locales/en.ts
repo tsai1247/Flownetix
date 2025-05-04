@@ -17,4 +17,11 @@ export default {
     title: 'Welcome to Nexus Finance',
     description: 'Your all-in-one financial management solution.',
   },
+  about: {
+    title: 'About Nexus Finance',
+    navigator: 'About',
+    copyRight: {
+      title: 'Notice of Copyright',
+    },
+  },
 }

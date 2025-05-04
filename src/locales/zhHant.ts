@@ -12,5 +12,13 @@ export default {
     assetManager: '資產管理',
     settings: '設定',
     help: '幫助',
+    about: '關於',
+  },
+  about: {
+    title: '關於 Nexus Finance',
+    navigator: '關於',
+    copyRight: {
+      title: '版權聲明',
+    },
   },
 }
