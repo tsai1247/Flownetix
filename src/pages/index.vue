@@ -1,5 +1,8 @@
 <template>
-  <HelloWorld />
+  <div class="text-center justify-center">
+    <div class="text-h3 mb-3">{{ $t('home.title') }}</div>
+    <div class="text-h5">{{ $t('home.description') }}</div>
+  </div>
 </template>
 
 <script lang="ts" setup>
