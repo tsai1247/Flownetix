@@ -6,5 +6,10 @@
 </template>
 
 <script lang="ts" setup>
-  //
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+
+  // Redirect to the snapshot route
+  router.push('/snapshot');
 </script>
