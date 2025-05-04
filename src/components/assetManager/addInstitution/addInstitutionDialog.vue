@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showDialog" max-width="500px">
+  <v-dialog v-model="showDialog" max-width="500px" persistent>
     <v-card>
       <v-card-title>
         <span class="text-h5">{{ $t('assetManager.addInstitution.title') }}</span>
