@@ -13,4 +13,8 @@ export default {
     settings: 'Settings',
     help: 'Help',
   },
+  home: {
+    title: 'Welcome to Nexus Finance',
+    description: 'Your all-in-one financial management solution.',
+  },
 }
