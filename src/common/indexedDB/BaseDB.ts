@@ -21,10 +21,23 @@ class BaseDB<T extends BaseDBDataType> {
     this.lock = false;
   }
 
-  async add (row: T): Promise<T | null> {
+  async getNewId (): Promise<number> {
     await this.acquireLock();
     try {
-      row.id = 1;
+      await this.db.open();
+      const allData = await this.db.getAllData() as T[];
+      const maxId = allData.reduce((max, item) => Math.max(max, item.id), 0);
+      this.db.close();
+      return maxId + 1;
+    } finally {
+      this.releaseLock();
+    }
+  }
+
+  async add (row: T): Promise<T | null> {
+    row.id = await this.getNewId() as number;
+    await this.acquireLock();
+    try {
       await this.db.open();
       const result = await this.db.addData(row) as T | null;
       this.db.close();
