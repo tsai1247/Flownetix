@@ -69,6 +69,9 @@ export default {
       title: '新增機構',
       description: '連接到新的銀行或金融機構',
       action: '新增機構',
+      name: '機構名稱',
+      website: '網站',
+      actions: '操作',
     },
     importAssets: {
       title: '匯入資產',

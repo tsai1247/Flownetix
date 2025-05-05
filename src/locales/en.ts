@@ -69,6 +69,9 @@ export default {
       title: 'Add Institution',
       description: 'Connect to a new bank or financial institution',
       action: 'Add Institution',
+      name: 'Institution Name',
+      website: 'Website',
+      actions: 'actions',
     },
     importAssets: {
       title: 'Import Assets',
