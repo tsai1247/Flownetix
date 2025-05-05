@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import { useLocale } from 'vuetify'
   const { current } = useLocale()
   const title = ref('Nexus Finance');
@@ -149,8 +149,15 @@
     return locale ? locale.title : 'English';
   });
 
+  onMounted(() => {
+    const savedCurrent = localStorage.getItem('current');
+    if (savedCurrent) {
+      current.value = savedCurrent;
+    }
+  })
   function changeLocale (locale: Locale) {
     current.value = locale.key;
+    localStorage.setItem('current', current.value);
   }
 </script>
 <style scoped></style>
