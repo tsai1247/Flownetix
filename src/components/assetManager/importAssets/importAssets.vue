@@ -13,7 +13,7 @@
       <div class="mb-2 text-subtitle-2 text-grey-darken-1">
         {{ $t('assetManager.importAssets.description') }}
       </div>
-      <v-btn class="text-none" color="orange-lighten-4" disabled @click="showDialog = true">
+      <v-btn class="text-none" color="orange-darken-2" disabled @click="showDialog = true">
         {{ $t('assetManager.importAssets.action') }}
       </v-btn>
     </div>
