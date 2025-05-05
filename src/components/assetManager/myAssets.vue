@@ -6,7 +6,7 @@
         <v-btn class="text-none" color="blue-accent-4" @click="showDialog = true">
           {{ $t('assetManager.addNewAsset.action') }}
         </v-btn>
-        <add-new-asset-dialog v-model="showDialog" />
+        <add-new-asset-dialog v-model="showDialog" @update:assets="updateAssets" />
       </div>
     </v-card-title>
     <v-card-item>
@@ -47,7 +47,7 @@
 
         <!-- Actions -->
         <template #item.actions="{ item }">
-          <v-icon class="text-grey-darken-1 mx-1" @click="() => editAsset(item)">mdi-pencil</v-icon>
+          <v-icon class="text-grey-darken-1 mx-1" disabled @click="() => editAsset(item)">mdi-pencil-off</v-icon>
           <v-icon class="text-grey-darken-1 mx-1" @click="() => deleteAsset(item)">mdi-delete</v-icon>
           <v-icon class="text-grey-darken-1 mx-1" @click="() => openInNew(item)">mdi-open-in-new</v-icon>
         </template>
@@ -66,12 +66,16 @@
   const assets = ref<Asset[]>([]);
 
   onMounted(() => {
+    updateAssets();
+  });
+
+  const updateAssets = () => {
     apis.assets.getAll().then((data: Asset[]) => {
       assets.value = data;
     }).catch(error => {
       console.error('Error fetching assets:', error);
     });
-  });
+  };
 
   const showDialog = ref(false);
 
@@ -81,7 +85,11 @@
   };
   const deleteAsset = (item: Asset) => {
     // Logic to delete asset goes here
-    console.log('Delete asset:', item);
+    apis.assets.remove(item).then(() => {
+      updateAssets();
+    }).catch(error => {
+      console.error('Error deleting asset:', error);
+    });
   };
   const openInNew = (item: Asset) => {
     const website = item.institution.website;
@@ -125,6 +133,10 @@
 
     return `${t('common.timeDelta.justNow')}`;
   };
+
+  defineExpose({
+    updateAssets,
+  });
 </script>
 
 <style scoped>
