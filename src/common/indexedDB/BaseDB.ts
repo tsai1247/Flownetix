@@ -36,6 +36,8 @@ class BaseDB<T extends BaseDBDataType> {
 
   async add (row: T): Promise<T | null> {
     row.id = await this.getNewId() as number;
+    row.cons_time = new Date();
+    row.modi_time = new Date();
     await this.acquireLock();
     try {
       await this.db.open();
@@ -48,6 +50,7 @@ class BaseDB<T extends BaseDBDataType> {
   }
 
   async update (id: number, row: T): Promise<T | null> {
+    row.modi_time = new Date();
     await this.acquireLock();
     try {
       await this.db.open();
