@@ -1,13 +1,13 @@
 import type { BaseDBDataType } from './IDatabase';
 import BaseDB from './BaseDB';
+import type { Institution } from './InstitutionDB';
 
 interface Asset extends BaseDBDataType {
   name: string;
   type: string;
-  institution: string;
+  institution: Institution;
   balance: number;
   currency: string;
-  website: string;
 }
 
 class AssetsDB extends BaseDB<Asset> {
@@ -21,7 +21,6 @@ class AssetsDB extends BaseDB<Asset> {
       { key: 'institution', unique: false },
       { key: 'balance', unique: false },
       { key: 'currency', unique: false },
-      { key: 'website', unique: false },
       { key: 'cons_date', unique: false },
       { key: 'modi_date', unique: false },
     ];
