@@ -1,6 +1,6 @@
 <template>
   <div class="ma-0">
-    <h1>{{ $t('title.snapshot') }}</h1>
+    <div class="text-h4 font-weight-bold">{{ $t('snapshot.title') }}</div>
   </div>
 </template>
 

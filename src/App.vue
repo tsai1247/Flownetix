@@ -88,22 +88,22 @@
 
   const routeInfo = ref([
     {
-      value: 'snapshot',
+      value: 'snapshot.navigator',
       icon: 'mdi-view-dashboard',
       path: '/snapshot',
     },
     {
-      value: 'prediction',
+      value: 'prediction.navigator',
       icon: 'mdi-chart-bar',
       path: '/prediction',
     },
     {
-      value: 'cashFlow',
+      value: 'cashFlow.navigator',
       icon: 'mdi-chart-line-variant',
       path: '/cash-flow',
     },
     {
-      value: 'assetManager',
+      value: 'assetManager.navigator',
       icon: 'mdi-bank',
       path: '/asset-manager',
     },
@@ -111,14 +111,19 @@
 
   const preferenceInfo = ref([
     {
-      value: 'settings',
+      value: 'settings.navigator',
       icon: 'mdi-cog',
       path: '/settings',
     },
     {
-      value: 'help',
+      value: 'help.navigator',
       icon: 'mdi-help-circle',
       path: '/help',
+    },
+    {
+      value: 'about.navigator',
+      icon: 'mdi-information',
+      path: '/about',
     },
   ]);
 
