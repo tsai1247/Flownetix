@@ -16,7 +16,7 @@
         :headers="[
           { title: $t('assetManager.myAssets.name'), value: 'name', align: 'start' },
           { title: $t('assetManager.myAssets.type'), value: 'type', align: 'start' },
-          { title: $t('assetManager.myAssets.institution'), value: 'institution', align: 'start' },
+          { title: $t('assetManager.myAssets.institution'), value: 'institution.name', align: 'start' },
           { title: $t('assetManager.myAssets.balance'), value: 'balance', align: 'end' },
           { title: $t('assetManager.myAssets.lastUpdated'), value: 'last_updated', align: 'start' },
           { title: $t('assetManager.myAssets.actions'), value: 'actions', align: 'end' },
@@ -58,15 +58,15 @@
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import { assetsDB } from '../../common/indexedDB';
   import type { Asset } from '../../common/indexedDB';
+  import apis from '../../api';
   import { useI18n } from 'vue-i18n';
 
   const { t } = useI18n();
   const assets = ref<Asset[]>([]);
 
   onMounted(() => {
-    assetsDB.getAll().then((data: Asset[]) => {
+    apis.assets.getAll().then((data: Asset[]) => {
       assets.value = data;
     }).catch(error => {
       console.error('Error fetching assets:', error);
@@ -84,8 +84,9 @@
     console.log('Delete asset:', item);
   };
   const openInNew = (item: Asset) => {
-    // Logic to open asset in new tab goes here
-    console.log('Open asset in new tab:', item);
+    const website = item.institution.website;
+    const url = new URL(website);
+    window.open(url.href, '_blank');
   };
 
   const dayDiffFormat = (date: Date) => {
