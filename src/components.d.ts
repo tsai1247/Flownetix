@@ -8,8 +8,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./components/AppFooter.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    AddInstitution: typeof import('./components/assetManager/addInstitution/addInstitution.vue')['default']
+    AddInstitutionDialog: typeof import('./components/assetManager/addInstitution/addInstitutionDialog.vue')['default']
+    AddNewAsset: typeof import('./components/assetManager/addNewAsset/addNewAsset.vue')['default']
+    AddNewAssetDialog: typeof import('./components/assetManager/addNewAsset/addNewAssetDialog.vue')['default']
+    FlowPathManagement: typeof import('./components/assetManager/flowPathManagement.vue')['default']
+    ImportAssets: typeof import('./components/assetManager/importAssets/importAssets.vue')['default']
+    ImportAssetsDialog: typeof import('./components/assetManager/importAssets/importAssetsDialog.vue')['default']
+    MyAssets: typeof import('./components/assetManager/myAssets.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
