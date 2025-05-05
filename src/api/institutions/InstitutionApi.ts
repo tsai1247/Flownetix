@@ -27,6 +27,10 @@ function add (institution: Institution) {
 
 function remove (institution: Institution) {
   return new Promise((resolve, reject) => {
+    if (!institution.id) {
+      reject(new Error('Institution ID is required for deletion'));
+      return;
+    }
     institutionDB.delete(institution.id)
       .then(() => {
         resolve(true);
