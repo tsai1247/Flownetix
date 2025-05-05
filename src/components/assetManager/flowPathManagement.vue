@@ -21,7 +21,13 @@
           {{ $t('assetManager.flowPathManagement.instruction.description') }}
         </div>
       </v-sheet>
-      <v-btn class="text-none" color="blue-accent-4" prepend-icon="mdi-plus" @click="showDialog = true">
+      <v-btn
+        class="text-none"
+        color="blue-accent-4"
+        disabled
+        prepend-icon="mdi-plus"
+        @click="showDialog = true"
+      >
         {{ $t('assetManager.flowPathManagement.action') }}
       </v-btn></v-card-item>
 
