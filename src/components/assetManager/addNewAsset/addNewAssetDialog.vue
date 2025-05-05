@@ -37,11 +37,9 @@
             />
           </v-col>
           <v-col cols="12" sm="6">
-            <v-select
+            <v-autocomplete
               v-model="asset.currency"
               dense
-              item-title="text"
-              item-value="value"
               :items="currencies"
               label="Asset Currency"
               outlined
@@ -104,6 +102,12 @@
     }
   })
 
+  onMounted(() => {
+    apis.common.getCurrencyList().then(data => {
+      currencies.value = data;
+    })
+  })
+
   const asset = ref<Asset>({
     name: '',
     type: '',
@@ -132,14 +136,7 @@
     { text: 'Crypto', value: 'crypto' },
   ]);
 
-  const currencies = ref([
-    { text: 'USD', value: 'USD' },
-    { text: 'EUR', value: 'EUR' },
-    { text: 'TWD', value: 'TWD' },
-    { text: 'JPY', value: 'JPY' },
-    { text: 'CNY', value: 'CNY' },
-    { text: 'HKD', value: 'HKD' },
-  ]);
+  const currencies = ref([]);
 
   const institutions = ref<Institution[]>([]);
   const updateInstitutions = () => {
