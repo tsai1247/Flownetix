@@ -37,7 +37,7 @@
 
         <!-- Balance -->
         <template #item.balance="{ item }">
-          <span>{{ item.balance.toLocaleString(item.currency, {style:'currency',currency: item.currency}) }}</span>
+          <span>{{ item.currency }} {{ Number(item.balance).toLocaleString() }}</span>
         </template>
 
         <!-- Last Updated -->
