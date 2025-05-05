@@ -26,7 +26,24 @@ function add (asset: Asset) {
   });
 }
 
+function remove (asset: Asset) {
+  return new Promise((resolve, reject) => {
+    if (!asset.id) {
+      reject(new Error('Asset ID is required for deletion'));
+      return;
+    }
+    assetsDB.delete(asset.id)
+      .then(() => {
+        resolve(true);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
+
 export default {
   getAll,
   add,
+  remove,
 };
