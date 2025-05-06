@@ -26,6 +26,22 @@ function add (asset: Asset) {
   });
 }
 
+function update (asset: Asset) {
+  return new Promise((resolve, reject) => {
+    if (!asset.id) {
+      reject(new Error('Asset ID is required to update'));
+      return;
+    }
+    assetsDB.update(asset.id, asset)
+      .then(() => {
+        resolve(true);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
+
 function remove (asset: Asset) {
   return new Promise((resolve, reject) => {
     if (!asset.id) {
@@ -45,5 +61,6 @@ function remove (asset: Asset) {
 export default {
   getAll,
   add,
+  update,
   remove,
 };

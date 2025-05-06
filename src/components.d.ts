@@ -12,6 +12,7 @@ declare module 'vue' {
     AddInstitutionDialog: typeof import('./components/assetManager/addInstitution/addInstitutionDialog.vue')['default']
     AddNewAsset: typeof import('./components/assetManager/addNewAsset/addNewAsset.vue')['default']
     AddNewAssetDialog: typeof import('./components/assetManager/addNewAsset/addNewAssetDialog.vue')['default']
+    EditAssetDialog: typeof import('./components/assetManager/addNewAsset/editAssetDialog.vue')['default']
     FlowPathManagement: typeof import('./components/assetManager/flowPathManagement.vue')['default']
     ImportAssets: typeof import('./components/assetManager/importAssets/importAssets.vue')['default']
     ImportAssetsDialog: typeof import('./components/assetManager/importAssets/importAssetsDialog.vue')['default']
