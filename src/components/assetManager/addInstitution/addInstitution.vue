@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-1 pa-3 mb-4">
+  <v-card class="elevation-1 pa-6 mb-4" rounded="xl">
     <div class="text-center">
       <v-icon
         color="teal"

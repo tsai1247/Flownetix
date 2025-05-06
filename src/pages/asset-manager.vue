@@ -5,7 +5,7 @@
     <div class="text-subtitle-1 text-grey-darken-3">{{ $t('assetManager.subtitle') }}</div>
 
     <!-- main content -->
-    <v-container class="pa-0 ma-0" fluid>
+    <v-container class="pa-0 mt-3" fluid>
       <v-row align="center" class="ma-0 pa-0" justify="center">
         <v-col class="pa-2" cols="4">
           <add-new-asset
