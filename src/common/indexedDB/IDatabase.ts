@@ -76,7 +76,8 @@ class IDatabase {
   updateData (id: number, data: BaseDBDataType) {
     return new Promise((resolve, reject) => {
       const objectStore = this.db!.transaction(this.tableName, 'readwrite').objectStore(this.tableName);
-      const request = objectStore.put({ ...data, [this.pk]: id });
+      const clonedData = JSON.parse(JSON.stringify(data));
+      const request = objectStore.put({ ...clonedData, [this.pk]: id });
       request.onsuccess = () => {
         resolve(request.result);
       };
