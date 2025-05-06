@@ -6,6 +6,12 @@ export default {
   cashFlow: {
     navigator: '現金流管理',
     title: '現金流管理',
+    subtitle: '追蹤和管理您的現金流和定期交易',
+    monthlyNewFlow: {
+      monthlyIncome: '每月收入',
+      monthlyExpenses: '每月支出',
+      newFlow: '淨流量',
+    },
   },
   prediction: {
     navigator: '財務預測',

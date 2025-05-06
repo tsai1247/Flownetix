@@ -6,6 +6,12 @@ export default {
   cashFlow:{
     navigator:  'Cash Flow',
     title: 'Cash Flow Management',
+    subtitle: 'Track and manage your cash flows and recurring transactions',
+    monthlyNewFlow: {
+      monthlyIncome: 'Monthly Income',
+      monthlyExpenses: 'Monthly Expenses',
+      newFlow: 'Net Flow',
+    },
   },
   prediction:{
     navigator:  'Prediction',
