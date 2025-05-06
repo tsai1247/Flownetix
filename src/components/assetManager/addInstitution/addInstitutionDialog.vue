@@ -63,6 +63,7 @@
                 <!-- actions -->
                 <template #item.actions="{ item }">
                   <v-btn
+                    class="mx-2"
                     color="red"
                     icon
                     size="x-small"
@@ -71,6 +72,20 @@
                   >
                     <v-icon>
                       mdi-delete
+                    </v-icon>
+                  </v-btn>
+
+                  <!-- open in new -->
+                  <v-btn
+                    class="mx-2"
+                    color="primary"
+                    icon
+                    size="x-small"
+                    text
+                    @click="openInNew(item)"
+                  >
+                    <v-icon>
+                      mdi-open-in-new
                     </v-icon>
                   </v-btn>
                 </template>
@@ -142,6 +157,12 @@
       institutions.value = data
     })
   }
+
+  const openInNew = (item: Institution) => {
+    const website = item.website;
+    const url = new URL(website);
+    window.open(url.href, '_blank');
+  };
 </script>
 
 <style scoped>
