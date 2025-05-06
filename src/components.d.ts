@@ -16,7 +16,10 @@ declare module 'vue' {
     FlowPathManagement: typeof import('./components/assetManager/flowPathManagement.vue')['default']
     ImportAssets: typeof import('./components/assetManager/importAssets/importAssets.vue')['default']
     ImportAssetsDialog: typeof import('./components/assetManager/importAssets/importAssetsDialog.vue')['default']
+    MonthlyExpenses: typeof import('./components/cashFlow/monthlyNetFlow/monthlyExpenses.vue')['default']
+    MonthlyIncome: typeof import('./components/cashFlow/monthlyNetFlow/monthlyIncome.vue')['default']
     MyAssets: typeof import('./components/assetManager/myAssets.vue')['default']
+    NetFlow: typeof import('./components/cashFlow/monthlyNetFlow/netFlow.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
