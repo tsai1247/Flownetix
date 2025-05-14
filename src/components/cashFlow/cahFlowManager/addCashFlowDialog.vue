@@ -34,6 +34,7 @@
               :label="$t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.flowAmount')"
               outlined
               required
+              type="number"
             />
           </v-col>
           <v-col cols="12" sm="6">
@@ -71,6 +72,7 @@
               :disabled="!cashFlow.isRecurring"
               outlined
               required
+              type="number"
             />
           </v-col>
           <v-col cols="12" sm="4">
@@ -170,6 +172,19 @@
   const addCashFlow = () => {
     const newCashFlow = cashFlow.value;
     newCashFlow.recurringRate = recurringRate.value;
+    newCashFlow.amount = Math.abs( newCashFlow.amount );
+
+    if (newCashFlow.name === '' || newCashFlow.currency === '') {
+      alert('Please fill in all fields correctly.');
+      return;
+    }
+    if (newCashFlow.isRecurring) {
+      if (newCashFlow.recurringRate.per <= 0) {
+        alert('Recurring interval should be greater than 0')
+      }
+      return;
+    }
+
 
     apis.cashFlow.add(newCashFlow).then(() => {
       showDialog.value = false;
