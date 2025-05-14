@@ -54,7 +54,7 @@
               </v-icon>
             </template>
             <v-list>
-              <v-list-item @click="null">
+              <v-list-item :disabled="true" @click="null">
                 <div>Edit</div>
               </v-list-item>
               <v-list-item @click="deleteCashFlow">
