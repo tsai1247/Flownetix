@@ -181,11 +181,11 @@
     if (newCashFlow.isRecurring) {
       if (newCashFlow.recurringRate.per <= 0) {
         alert('Recurring interval should be greater than 0')
+        return;
       }
-      return;
     }
 
-
+    console.log(newCashFlow);
     apis.cashFlow.add(newCashFlow).then(() => {
       showDialog.value = false;
       emits('update:cash-flow');
