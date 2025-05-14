@@ -168,7 +168,10 @@
   });
 
   const addCashFlow = () => {
-    apis.cashFlow.add(cashFlow.value).then(() => {
+    const newCashFlow = cashFlow.value;
+    newCashFlow.recurringRate = recurringRate.value;
+
+    apis.cashFlow.add(newCashFlow).then(() => {
       showDialog.value = false;
       emits('update:cash-flow');
     }).catch(error => {

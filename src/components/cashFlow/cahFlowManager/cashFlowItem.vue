@@ -57,7 +57,7 @@
               <v-list-item @click="null">
                 <div>Edit</div>
               </v-list-item>
-              <v-list-item @click="null">
+              <v-list-item @click="deleteCashFlow">
                 <div>Delete</div>
               </v-list-item>
             </v-list>
@@ -71,10 +71,11 @@
 <script setup lang="ts">
   import type { PropType } from 'vue';
   import { computed } from 'vue';
+  import apis from '../../../api';
   import { useI18n } from 'vue-i18n';
   import type { CashFlow } from '../../../dataType';
   import { useLocale } from 'vuetify'
-  import { Interval } from '../../../dataType';
+  import { FlowType, Interval } from '../../../dataType';
   const { current } = useLocale()
   const { t } = useI18n();
 
@@ -86,11 +87,11 @@
   })
 
   const formattedDate = computed(() => {
-    return props.cashFlow.startDate.toLocaleDateString(current.value).split('T')[0];
+    return new Date(props.cashFlow.startDate).toLocaleDateString(current.value).split('T')[0];
   })
 
   const isProfit = computed(() => {
-    return props.cashFlow.amount >= 0;
+    return props.cashFlow.flowType == FlowType.Income;
   });
 
   const pureValue = computed(() => Math.abs(props.cashFlow.amount));
@@ -116,6 +117,10 @@
       }
     );
   })
+
+  const deleteCashFlow = () => {
+    apis.cashFlow.remove(props.cashFlow);
+  }
 
 </script>
 

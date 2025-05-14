@@ -32,63 +32,20 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
+  import apis from '../../../api';
   import type { CashFlow } from '../../../dataType';
-  import { Interval } from '../../../dataType';
 
   const showDialog = ref(false);
 
-  const cashFlowList= ref<CashFlow[]>(
-    [
-      {
-        name: 'Salary',
-        amount: 100000,
-        currency: 'USD',
-        startDate: new Date('2025-01-05'),
-        isRecurring: true,
-        recurringRate: {
-          per: 1,
-          unit: Interval.Month,
-        },
-      } as CashFlow,
-      {
-        name: 'Salary',
-        amount: 61234,
-        currency: 'USD',
-        startDate: new Date('2025-04-05'),
-        isRecurring: true,
-        recurringRate: {
-          per: 1,
-          unit: Interval.Quarter,
-        },
-      } as CashFlow,
-      {
-        name: 'Rent',
-        amount: -3000,
-        currency: 'USD',
-        startDate: new Date('2025-01-10'),
-        isRecurring: true,
-        recurringRate: {
-          per: 1,
-          unit: Interval.Month,
-        },
-      } as CashFlow,
-      {
-        name: 'subsidy',
-        amount: 12345,
-        currency: 'NTD',
-        startDate: new Date('2025-02-02'),
-        isRecurring: false,
-      } as CashFlow,
-      {
-        name: 'party',
-        amount: -300,
-        currency: 'USD',
-        startDate: new Date('2025-03-08'),
-        isRecurring: false,
-      } as CashFlow,
-    ]
-  );
+  const cashFlowList = ref<CashFlow[]>([]);
+
+  onMounted(() => {
+    apis.cashFlow.getAll().then((data: CashFlow[]) => {
+      cashFlowList.value = data;
+    })
+  })
+
 </script>
 
 <style scoped>
