@@ -86,6 +86,8 @@
     },
   })
 
+  const emits = defineEmits(['update:cash-flow']);
+
   const formattedDate = computed(() => {
     return new Date(props.cashFlow.startDate).toLocaleDateString(current.value).split('T')[0];
   })
@@ -119,7 +121,11 @@
   })
 
   const deleteCashFlow = () => {
-    apis.cashFlow.remove(props.cashFlow);
+    apis.cashFlow.remove(props.cashFlow).then(() => {
+      emits('update:cash-flow');
+    }).catch(error => {
+      console.error('Error deleting asset:', error);
+    });
   }
 
 </script>

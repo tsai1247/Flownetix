@@ -15,7 +15,7 @@
         >
           {{ $t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.title') }}
         </v-btn>
-        <add-cash-flow-dialog v-model="showDialog" />
+        <add-cash-flow-dialog v-model="showDialog" @update:cash-flow="updateCashFlow" />
       </div>
     </v-card-title>
 
@@ -25,6 +25,7 @@
         v-for="(item, index) in cashFlowList"
         :key="index"
         :cash-flow="item"
+        @update:cash-flow="updateCashFlow"
       />
 
 
@@ -41,10 +42,14 @@
   const cashFlowList = ref<CashFlow[]>([]);
 
   onMounted(() => {
+    updateCashFlow();
+  })
+
+  const updateCashFlow = () => {
     apis.cashFlow.getAll().then((data: CashFlow[]) => {
       cashFlowList.value = data;
     })
-  })
+  }
 
 </script>
 
