@@ -12,6 +12,17 @@ export default {
       monthlyExpenses: '每月支出',
       newFlow: '淨流量',
     },
+    cashFlowManager: {
+      cashFlowProjection: {
+        title: '現金流預測',
+      },
+      upcomingCashFlows: {
+        title: '現金流',
+        addNewFlow: '新增現金流',
+        recur: '週期',
+        recurTooltip: '每 {interval} 一次',
+      },
+    },
   },
   prediction: {
     navigator: '財務預測',
@@ -37,6 +48,13 @@ export default {
       minutesAgo: '分鐘前',
       secondsAgo: '秒前',
       justNow: '剛剛',
+    },
+    interval: {
+      day: '{per} 日',
+      week: '{per} 週',
+      month: '{per} 個月',
+      quarter: '{per} 季',
+      year: '{per} 年',
     },
   },
   assetManager: {

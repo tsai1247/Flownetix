@@ -24,7 +24,7 @@ export default createVuetify({
       light: {
         colors: {
           primary: '#1A365D', // 定義 primary 顏色
-          secondary: '#FFFFFF',
+          secondary: '#1A58B5',
           background: '#F8FAFC',
           accent: '#82B1FF',
           error: '#FF5252',

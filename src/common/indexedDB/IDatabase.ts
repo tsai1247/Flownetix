@@ -1,8 +1,4 @@
-interface BaseDBDataType {
-  id: number | null;
-  cons_time: Date;
-  modi_time: Date;
-}
+import type { BaseDBDataType } from '@/dataType';
 
 interface ColumnDataType {
   key: string;

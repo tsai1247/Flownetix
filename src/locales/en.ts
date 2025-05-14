@@ -12,6 +12,17 @@ export default {
       monthlyExpenses: 'Monthly Expenses',
       newFlow: 'Net Flow',
     },
+    cashFlowManager: {
+      cashFlowProjection: {
+        title: 'Cash Flow Projection',
+      },
+      upcomingCashFlows: {
+        title: 'Cash Flows',
+        addNewFlow: 'Add Flow',
+        recur: 'Recur',
+        recurTooltip: 'Recurring every {interval}',
+      },
+    },
   },
   prediction:{
     navigator:  'Prediction',
@@ -37,6 +48,13 @@ export default {
       minutesAgo: 'minutes ago',
       secondsAgo: 'seconds ago',
       justNow: 'just now',
+    },
+    interval: {
+      day: '{per} day(s)',
+      week: '{per} week(s)',
+      month: '{per} month(s)',
+      quarter: '{per} quarter(s)',
+      year: '{per} year(s)',
     },
   },
   assetManager: {
