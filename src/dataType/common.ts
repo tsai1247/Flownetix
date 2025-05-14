@@ -5,10 +5,15 @@ enum Interval {
   Year
 }
 
+enum FlowType {
+  Income,
+  Expense
+}
+
 interface Frequency {
   per: number,
   unit: Interval,
 }
 
 export type { Frequency }
-export default Interval
+export { Interval, FlowType }

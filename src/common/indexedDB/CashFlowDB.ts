@@ -8,10 +8,11 @@ class CashFlowDB extends BaseDB<CashFlow> {
     const pk = 'id';
     const columns = [
       { key: 'name', unique: false },
-      { key: 'value', unique: false },
+      { key: 'flowType', unique: false },
+      { key: 'amount', unique: false },
       { key: 'currency', unique: false },
-      { key: 'isRecurring', unique: false },
       { key: 'startDate', unique: false },
+      { key: 'isRecurring', unique: false },
       { key: 'recurringRate', unique: false },
       { key: 'cons_date', unique: false },
       { key: 'modi_date', unique: false },

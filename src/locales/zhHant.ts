@@ -18,9 +18,17 @@ export default {
       },
       upcomingCashFlows: {
         title: '現金流',
-        addNewFlow: '新增現金流',
         recur: '週期',
         recurTooltip: '每 {interval} 一次',
+        addNewFlow: {
+          title: '新增現金流',
+          flowName: '名稱',
+          flowType: '收入/支出',
+          flowAmount: '金額',
+          Currency: '貨幣',
+          Date: '進出帳日期',
+          Recurring: '週期現金流，每隔',
+        },
       },
     },
   },
@@ -55,6 +63,13 @@ export default {
       month: '{per} 個月',
       quarter: '{per} 季',
       year: '{per} 年',
+    },
+    unit: {
+      day: '日',
+      week: '週',
+      month: '月',
+      quarter: '季',
+      year: '年',
     },
   },
   assetManager: {

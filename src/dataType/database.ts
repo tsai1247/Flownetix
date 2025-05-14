@@ -1,4 +1,5 @@
 import type { Frequency } from './common';
+import { FlowType } from './common';
 
 interface BaseDBDataType {
   id: number | null;
@@ -8,7 +9,8 @@ interface BaseDBDataType {
 
 interface CashFlow extends BaseDBDataType {
   name: string;
-  value: number;
+  flowType: FlowType,
+  amount: number;
   currency: string;
   startDate: Date;
   isRecurring: boolean;

@@ -13,8 +13,9 @@
           rounded="lg"
           @click="showDialog = true"
         >
-          {{ $t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow') }}
+          {{ $t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.title') }}
         </v-btn>
+        <add-cash-flow-dialog v-model="showDialog" />
       </div>
     </v-card-title>
 
@@ -33,7 +34,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import type { CashFlow } from '../../../dataType';
-  import Interval from '../../../dataType';
+  import { Interval } from '../../../dataType';
 
   const showDialog = ref(false);
 
@@ -41,7 +42,7 @@
     [
       {
         name: 'Salary',
-        value: 100000,
+        amount: 100000,
         currency: 'USD',
         startDate: new Date('2025-01-05'),
         isRecurring: true,
@@ -52,7 +53,7 @@
       } as CashFlow,
       {
         name: 'Salary',
-        value: 61234,
+        amount: 61234,
         currency: 'USD',
         startDate: new Date('2025-04-05'),
         isRecurring: true,
@@ -63,7 +64,7 @@
       } as CashFlow,
       {
         name: 'Rent',
-        value: -3000,
+        amount: -3000,
         currency: 'USD',
         startDate: new Date('2025-01-10'),
         isRecurring: true,
@@ -74,14 +75,14 @@
       } as CashFlow,
       {
         name: 'subsidy',
-        value: 12345,
+        amount: 12345,
         currency: 'NTD',
         startDate: new Date('2025-02-02'),
         isRecurring: false,
       } as CashFlow,
       {
         name: 'party',
-        value: -300,
+        amount: -300,
         currency: 'USD',
         startDate: new Date('2025-03-08'),
         isRecurring: false,

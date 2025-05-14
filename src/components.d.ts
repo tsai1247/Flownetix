@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddCashFlowDialog: typeof import('./components/cashFlow/cahFlowManager/addCashFlowDialog.vue')['default']
     AddInstitution: typeof import('./components/assetManager/addInstitution/addInstitution.vue')['default']
     AddInstitutionDialog: typeof import('./components/assetManager/addInstitution/addInstitutionDialog.vue')['default']
     AddNewAsset: typeof import('./components/assetManager/addNewAsset/addNewAsset.vue')['default']

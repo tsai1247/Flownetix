@@ -18,9 +18,17 @@ export default {
       },
       upcomingCashFlows: {
         title: 'Cash Flows',
-        addNewFlow: 'Add Flow',
         recur: 'Recur',
         recurTooltip: 'Recurring every {interval}',
+        addNewFlow: {
+          title: 'Add Flow',
+          flowName: 'Flow Name',
+          flowType: 'FlowType',
+          flowAmount: 'FlowAmount',
+          Currency: 'Currency',
+          Date: 'Debit/Credit Date',
+          Recurring: 'Recurring every',
+        },
       },
     },
   },

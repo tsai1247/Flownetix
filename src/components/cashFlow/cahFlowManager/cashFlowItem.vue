@@ -74,7 +74,7 @@
   import { useI18n } from 'vue-i18n';
   import type { CashFlow } from '../../../dataType';
   import { useLocale } from 'vuetify'
-  import Interval from '../../../dataType';
+  import { Interval } from '../../../dataType';
   const { current } = useLocale()
   const { t } = useI18n();
 
@@ -90,10 +90,10 @@
   })
 
   const isProfit = computed(() => {
-    return props.cashFlow.value >= 0;
+    return props.cashFlow.amount >= 0;
   });
 
-  const pureValue = computed(() => Math.abs(props.cashFlow.value));
+  const pureValue = computed(() => Math.abs(props.cashFlow.amount));
   const financialValue = computed(()=> pureValue.value.toLocaleString());
   const formattedValue = computed(() => {
     return `${isProfit.value? '+': '-'}$${financialValue.value}`
