@@ -47,7 +47,8 @@
 
   const updateCashFlow = () => {
     apis.cashFlow.getAll().then((data: CashFlow[]) => {
-      cashFlowList.value = data;
+      const currency = localStorage.getItem('currentCurrency') ?? 'USD'
+      cashFlowList.value = data.filter(item => item.currency === currency);
     })
   }
 

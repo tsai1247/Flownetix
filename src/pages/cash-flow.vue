@@ -8,16 +8,13 @@
 
     <!-- main content -->
     <v-container class="pa-0 mt-3" fluid>
-      <v-row align="start" class="ma-0 pa-0" justify="start">
-        <v-col class="pa-2" cols="8">
+
+      <v-row class="ma-0 pa-0">
+        <v-col cols="8">
           <cash-flow-setting />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="pa-2" cols="8">
           <cash-flow-projection />
         </v-col>
-        <v-col class="pa-2" cols="4">
+        <v-col cols="4">
           <upcoming-cash-flows />
         </v-col>
       </v-row>
@@ -44,7 +41,7 @@
   });
 
   onMounted(() => {
-    apis.cashFlow.getOneYearList().then(result => {
+    apis.cashFlow.getOneYearList(localStorage.getItem('currentCurrency') ?? 'USD').then(result => {
       totalValue.value = {
         income: result.totalIncome,
         expenses: result.totalExpenses,

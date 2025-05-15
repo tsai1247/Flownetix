@@ -38,7 +38,7 @@
   });
 
   onMounted(() => {
-    apis.cashFlow.getOneYearList().then(result => {
+    apis.cashFlow.getOneYearList(localStorage.getItem('currentCurrency') ?? 'USD').then(result => {
       chartData.value = result.data.map(item => {
         return {
           ...item,

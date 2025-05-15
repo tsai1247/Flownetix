@@ -77,10 +77,15 @@
 
     console.log(localStorage.getItem('selectedColorType'))
     selectedColorType.value = localStorage.getItem('selectedColorType') ?? '0';
+    currentCurrency.value = localStorage.getItem('currentCurrency') ?? 'USD';
   })
 
   watch(() => selectedColorType.value, () => {
     localStorage.setItem('selectedColorType', selectedColorType.value)
+  })
+
+  watch(() => currentCurrency.value, () => {
+    localStorage.setItem('currentCurrency', currentCurrency.value)
   })
 
 </script>

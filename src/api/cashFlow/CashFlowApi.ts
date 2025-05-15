@@ -59,7 +59,7 @@ function remove (cashFlow: CashFlow) {
   });
 }
 
-async function getOneYearList () {
+async function getOneYearList (currency: string) {
   const chartData = [];
   let totalIncome = 0;
   let totalExpenses = 0;
@@ -111,7 +111,8 @@ async function getOneYearList () {
   };
 
   await getAll().then(data => {
-    data.forEach(cashFlow => {
+    console.log(data)
+    data.filter(item => item.currency === currency).forEach(cashFlow => {
       if(cashFlow.isRecurring) {
         while(true){
           // just add to target month
