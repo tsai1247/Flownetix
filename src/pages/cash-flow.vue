@@ -49,7 +49,6 @@
 
   onMounted(() => {
     apis.cashFlow.getOneYearList().then(yearList => {
-      console.log(yearList);
       totalValue.value = yearList.reduce((sum, cur) => {
         return {
           income: sum.income + cur.income,

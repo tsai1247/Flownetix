@@ -1,7 +1,6 @@
 import { cashFlowDB } from '@/common/indexedDB';
 import type { CashFlow } from '@/dataType';
 import { FlowType, Interval } from '@/dataType';
-import { useLocale } from 'vuetify';
 
 function getAll (): Promise<CashFlow[]> {
   return new Promise((resolve, reject) => {
@@ -62,46 +61,46 @@ function remove (cashFlow: CashFlow) {
 
 async function getOneYearList () {
   const chartData = [];
-  const { current } = useLocale();
 
+  const cashFlowToData = (cashFlow: CashFlow) => {
+    const date = new Date(cashFlow.startDate);
+    return {
+      date,
+      value: Math.abs(cashFlow.amount) * (cashFlow.flowType === FlowType.Income ? 1 : -1),
+      data: [
+        {
+          name: cashFlow.name,
+          amount: Math.abs(cashFlow.amount) * (cashFlow.flowType === FlowType.Income ? 1 : -1),
+          flowType: cashFlow.flowType,
+        },
+      ],
+    };
+  }
+
+  const today = new Date();
+  const Milliseconds_Per_Year = 365*24*60*60*1000;
   const addData = cashFlow => {
-    const yearId = new Date(cashFlow.startDate).getFullYear();
-    const monthId = new Date(cashFlow.startDate).getMonth();
-    const targetIndex = chartData.findIndex(item => item.yearId === yearId && item.monthId === monthId);
-    if (targetIndex === -1) return false;
-    if(cashFlow.flowType === FlowType.Income) {
-      chartData[targetIndex] = {
-        ...chartData[targetIndex],
-        value: chartData[targetIndex].value + parseInt(cashFlow.amount, 10),
-        income: chartData[targetIndex].income + parseInt(cashFlow.amount, 10),
-      };
+    const targetDate = new Date(cashFlow.startDate);
+    if ((targetDate.getTime() - today.getTime()) > Milliseconds_Per_Year) {
+      return false;
+    }
+    const data = cashFlowToData(cashFlow);
+    const targetIndex = chartData.findIndex(item => item.date.getTime() === data?.date.getTime());
+    if (targetIndex == -1) {
+      chartData.push(data)
     }
     else {
       chartData[targetIndex] = {
         ...chartData[targetIndex],
-        value: chartData[targetIndex].value - parseInt(cashFlow.amount, 10),
-        expenses: chartData[targetIndex].expenses + parseInt(cashFlow.amount, 10),
-      };
+        value: chartData[targetIndex].value + data?.value,
+        data: [
+          ...chartData[targetIndex].data,
+          ...data.data,
+        ],
+      }
     }
     return true;
-  }
-
-  for (let i = 0; i < 12; i++) {
-    const targetDate = new Date();
-    targetDate.setMonth(targetDate.getMonth() + i)
-    targetDate.setDate(1)
-    const month = targetDate.toLocaleString(current.value, { month: 'short' });
-    const yearId = targetDate.getFullYear();
-    const monthId = targetDate.getMonth();
-    chartData.push({
-      yearId,
-      monthId,
-      xAxis: month,
-      value: 0,
-      income: 0,
-      expenses: 0,
-    });
-  }
+  };
 
   await getAll().then(data => {
     data.forEach(cashFlow => {
@@ -136,7 +135,7 @@ async function getOneYearList () {
       }
     })
   })
-  return chartData;
+  return chartData.sort((a, b) => a.date.getTime() - b.date.getTime() );
 }
 
 export default {

@@ -19,7 +19,10 @@
   import VChart from 'vue-echarts';
   import { computed, onMounted, ref } from 'vue';
   import apis from '../../../api';
+  import { useLocale } from 'vuetify';
+  import { FlowType } from '@/dataType';
 
+  const { current } = useLocale();
   const chartData = ref([]);
   const progressiveChartData = computed(() => {
     const result = [];
@@ -36,29 +39,104 @@
 
   onMounted(() => {
     apis.cashFlow.getOneYearList().then(yearList => {
-      chartData.value = yearList;
+      chartData.value = yearList.map(item => {
+        return {
+          ...item,
+          xAxis: item.date.toLocaleString(
+            current.value,
+            {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            }
+          ),
+        }
+      });
     });
   });
 
+  const getToolTipHtml = (xAxis, keyList, valueList) => {
+    return `
+      <div style="margin: 0px 0 0;line-height:1;">
+        <div style="font-size:14px;color:#666;font-weight:400;line-height:1;">
+          ${xAxis}
+        </div>
+        ${keyList.reduce((sum, _, index) =>
+          `${sum}
+          <div style="margin: 10px 0 0;line-height:1;">
+            <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? '#B71C1C': '#1B5E20'};">
+            </span>
+            <span style="float:right;margin-left:10px;font-size:14px;color:#666;font-weight:900">
+              ${keyList[index]} ${valueList[index]}
+            </span>
+          </div>`, '')}
+    `
+  }
+
   const option = computed(() => {
+    const xAxisData = progressiveChartData.value.map(item => item.xAxis)
     return {
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: progressiveChartData.value.map(item => item.xAxis),
-      },
-      tooltip: {
+      grid: [
+        {
+          left: 60,
+          right: 50,
+          height: '35%',
+        },
+        {
+          left: 60,
+          right: 50,
+          top: '60%',
+          height: '35%',
+        },
+      ],
+      tooltip:{
         trigger: 'axis',
-        axisPointer: {
-          type: 'cross',
-          label: {
-            backgroundColor: '#6a7985',
-          },
+        formatter: axisList => {
+          if(axisList.length === 0) {
+            return ''
+          }
+
+          if ( !isNaN(Number(axisList[0].value) ) ){
+            // gridIndex 0
+            return getToolTipHtml(axisList[0].axisValue, [''], [axisList.map(axis => axis.value)]);
+          }
+          else {
+            // gridIndex 1
+            return getToolTipHtml(
+              axisList[0].axisValue,
+              axisList.map(axis => axis.value[1]),
+              axisList.map(axis => axis.value[2])
+            );
+          }
         },
       },
-      yAxis: {
-        type: 'value',
-      },
+      xAxis: [
+        {
+          type: 'category',
+          axisLine: { onZero: true },
+          boundaryGap: false,
+          data: xAxisData,
+        },
+        {
+          gridIndex: 1,
+          type: 'category',
+          axisLine: { onZero: true },
+          boundaryGap: false,
+          position: 'top',
+          data: xAxisData,
+          show: false,
+        },
+      ],
+      yAxis: [
+        {
+          type: 'value',
+        },
+        {
+          gridIndex: 1,
+          type: 'category',
+          inverse: true,
+        },
+      ],
       series: [
         {
           data: progressiveChartData.value.map(item => item.value),
@@ -66,13 +144,54 @@
           areaStyle: {},
           smooth: true,
         },
+        {
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          name: 'Income',
+          type: 'scatter',
+          symbolSize (val) {
+            return 10;
+          },
+          itemStyle: {
+            color: '#B71C1C',
+          },
+          data: chartData.value.reduce((sum, dataInaDay, index) => {
+            dataInaDay.data.forEach(data => {
+              if(data.flowType === FlowType.Income) {
+                sum.push([index, data.name, data.amount])
+              }
+            });
+            return sum
+          }, []),
+        },
+        {
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          name: 'Expenses',
+          type: 'scatter',
+          symbolSize (val) {
+            return 10;
+          },
+          itemStyle: {
+            color: '#1B5E20',
+          },
+          data: chartData.value.reduce((sum, dataInaDay, index) => {
+            dataInaDay.data.forEach(data => {
+              if(data.flowType === FlowType.Expense) {
+                sum.push([index, data.name, data.amount])
+              }
+            });
+            return sum
+          }, []),
+        },
       ],
     }
   });
+
 </script>
 
 <style scoped>
 .chart {
-  height: 50vh;
+  height: 70vh;
 }
 </style>

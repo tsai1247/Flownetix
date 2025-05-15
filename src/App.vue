@@ -83,7 +83,7 @@
   import { computed, onMounted, ref } from 'vue';
   import { useLocale } from 'vuetify'
   import { CanvasRenderer } from 'echarts/renderers';
-  import { LineChart, PieChart } from 'echarts/charts';
+  import { LineChart, PieChart, ScatterChart } from 'echarts/charts';
   import {
     GridComponent,
     LegendComponent,
@@ -178,6 +178,7 @@
     LegendComponent,
     LineChart,
     GridComponent,
+    ScatterChart,
   ]);
 </script>
 <style scoped></style>

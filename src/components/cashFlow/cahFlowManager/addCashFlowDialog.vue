@@ -185,7 +185,6 @@
       }
     }
 
-    console.log(newCashFlow);
     apis.cashFlow.add(newCashFlow).then(() => {
       showDialog.value = false;
       emits('update:cash-flow');
