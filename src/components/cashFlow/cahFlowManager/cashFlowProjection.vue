@@ -1,7 +1,7 @@
 <template>
-  <v-card class="elevation-1 pa-4 mb-4 " rounded="xl">
+  <v-card class="elevation-1 pa-4 mb-4" rounded="xl">
     <!-- title -->
-    <v-card-title class="text-h5 mb-2">
+    <v-card-title class="text-h5 mb-0">
       {{ $t('cashFlow.cashFlowManager.cashFlowProjection.title') }}
     </v-card-title>
 
