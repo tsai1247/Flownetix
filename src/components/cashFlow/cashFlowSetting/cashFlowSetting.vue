@@ -37,7 +37,7 @@
                     aspect-ratio="16/9"
                     cover
                     :src="greenIncome"
-                    :width="150"
+                    :width="130"
                   />
                   <!-- <img alt="Radio One" src="path/to/image1.png" style="width: 24px; height: 24px;"> -->
                 </template>
@@ -48,7 +48,7 @@
                     aspect-ratio="16/9"
                     cover
                     :src="redIncome"
-                    :width="150"
+                    :width="130"
                   />
                   <!-- <img alt="Radio Two" src="path/to/image2.png" style="width: 24px; height: 24px;"> -->
                 </template>
