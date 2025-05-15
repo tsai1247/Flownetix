@@ -8,16 +8,12 @@
 
     <!-- main content -->
     <v-container class="pa-0 mt-3" fluid>
-      <v-row align="start" class="ma-0 pa-0" justify="center">
-        <v-col class="pa-2" cols="4">
-          <monthly-income :income="averageValue.income" />
+      <v-row align="start" class="ma-0 pa-0" justify="start">
+        <v-col class="pa-2" cols="8">
+          <cash-flow-setting />
         </v-col>
-        <v-col class="pa-2" cols="4">
-          <monthly-expenses :expense="averageValue.expenses" />
-        </v-col>
-        <v-col class="pa-2" cols="4">
-          <net-flow :flow="averageValue.flow" />
-        </v-col>
+      </v-row>
+      <v-row>
         <v-col class="pa-2" cols="8">
           <cash-flow-projection />
         </v-col>

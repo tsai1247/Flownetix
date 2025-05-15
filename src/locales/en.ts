@@ -7,10 +7,12 @@ export default {
     navigator:  'Cash Flow',
     title: 'Cash Flow Management',
     subtitle: 'Track and manage your cash flows and recurring transactions',
-    monthlyNewFlow: {
-      monthlyIncome: 'Average Monthly Income',
-      monthlyExpenses: 'Average Monthly Expenses',
-      newFlow: 'Average Net Flow',
+    cashFlowSetting: {
+      title: 'Options',
+      subtitle: {
+        assetCurrency: 'Asset Currency',
+        colorConfig: 'Color Configuration',
+      },
     },
     cashFlowManager: {
       cashFlowProjection: {

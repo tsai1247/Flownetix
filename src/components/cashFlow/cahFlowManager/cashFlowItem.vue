@@ -23,12 +23,14 @@
         <div class="d-flex justify-center" style="flex: 2">
           <v-icon
             v-if="isProfit"
-            class="text-green-darken-4 bg-green-accent-1 rounded-circle elevation-2 pa-4 ml-2"
+            class="rounded-circle elevation-2 pa-4 ml-2"
+            :class="colorConfig ? `text-green-darken-4 bg-green-accent-1` : `text-red-darken-4  bg-red-lighten-4`"
             size="small"
           >mdi-arrow-up-thin-circle-outline</v-icon>
           <v-icon
             v-else
-            class="text-red-darken-4 bg-red-lighten-4 rounded-circle elevation-2 pa-4 ml-2"
+            class="rounded-circle elevation-2 pa-4 ml-2"
+            :class="colorConfig ? `text-red-darken-4  bg-red-lighten-4` : `text-green-darken-4 bg-green-accent-1` "
             size="small"
           >mdi-arrow-down-thin-circle-outline</v-icon>
         </div>
@@ -40,7 +42,7 @@
         </div>
         <div class="d-flex text-subtitle-1 align-end justify-end mr-2" style="flex: 2">
           <div
-            :class="isProfit ? `text-green-darken-1` : `text-red-darken-1`"
+            :class="isProfit === colorConfig ? `text-green-darken-1` : `text-red-darken-1`"
           >{{ formattedValue }}</div>
         </div>
         <div style="flex: 1">
@@ -85,6 +87,8 @@
       required: true,
     },
   })
+
+  const colorConfig = localStorage.getItem('selectedColorType') === '0';
 
   const emits = defineEmits(['update:cash-flow']);
 

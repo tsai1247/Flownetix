@@ -47,10 +47,15 @@
     });
   });
 
-  const color = {
-    income: '#1B5E20',
-    expenses: '#B71C1C',
-  }
+  const color = localStorage.getItem('selectedColorType') === '0'
+    ? {
+      income: '#089981',
+      expenses: '#f23645',
+    }
+    : {
+      income: '#f23645',
+      expenses: '#089981',
+    }
 
   const getToolTipHtml = (xAxis, keyList, valueList) => {
     return `
@@ -189,6 +194,6 @@
 
 <style scoped>
 .chart {
-  height: 70vh;
+  height: 50vh;
 }
 </style>

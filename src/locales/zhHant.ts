@@ -7,10 +7,8 @@ export default {
     navigator: '現金流管理',
     title: '現金流管理',
     subtitle: '追蹤和管理您的現金流和定期交易',
-    monthlyNewFlow: {
-      monthlyIncome: '平均每月收入',
-      monthlyExpenses: '平均每月支出',
-      newFlow: '平均每月淨流量',
+    cashFlowSetting: {
+      title: '選項',
     },
     cashFlowManager: {
       cashFlowProjection: {
