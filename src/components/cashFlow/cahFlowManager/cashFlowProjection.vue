@@ -42,14 +42,6 @@
       chartData.value = result.data.map(item => {
         return {
           ...item,
-          xAxis: item.date.toLocaleString(
-            current.value,
-            {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            }
-          ),
         }
       });
     });
@@ -79,7 +71,7 @@
   }
 
   const option = computed(() => {
-    const xAxisData = progressiveChartData.value.map(item => item.xAxis)
+    const xAxisData = progressiveChartData.value.map(item => item.date.toLocaleDateString(current.value).split('T')[0])
     return {
       grid: [
         {
