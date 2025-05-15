@@ -71,8 +71,13 @@
   const currentCurrency = ref('USD');
   const selectedColorType = ref('0');
   onMounted(() => {
-    apis.common.getCurrencyList().then(data => {
-      currencies.value = data;
+    apis.cashFlow.getAll().then(data => {
+      currencies.value = data.reduce((sum, cur) => {
+        if (!sum.includes(cur.currency)) {
+          sum.push(cur.currency)
+        }
+        return sum;
+      }, []);
     })
 
     console.log(localStorage.getItem('selectedColorType'))
