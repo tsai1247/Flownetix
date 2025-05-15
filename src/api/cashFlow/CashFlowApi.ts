@@ -61,6 +61,8 @@ function remove (cashFlow: CashFlow) {
 
 async function getOneYearList () {
   const chartData = [];
+  let totalIncome = 0;
+  let totalExpenses = 0;
 
   const cashFlowToData = (cashFlow: CashFlow) => {
     const date = new Date(cashFlow.startDate);
@@ -83,6 +85,12 @@ async function getOneYearList () {
     const targetDate = new Date(cashFlow.startDate);
     if ((targetDate.getTime() - today.getTime()) > Milliseconds_Per_Year) {
       return false;
+    }
+    if(cashFlow.flowType === FlowType.Income) {
+      totalIncome += Math.abs(cashFlow.amount);
+    }
+    else {
+      totalExpenses += Math.abs(cashFlow.amount);
     }
     const data = cashFlowToData(cashFlow);
     const targetIndex = chartData.findIndex(item => item.date.getTime() === data?.date.getTime());
@@ -135,7 +143,19 @@ async function getOneYearList () {
       }
     })
   })
-  return chartData.sort((a, b) => a.date.getTime() - b.date.getTime() );
+
+  console.log(
+    {
+      totalIncome,
+      totalExpenses,
+      data: chartData.sort((a, b) => a.date.getTime() - b.date.getTime() ),
+    }
+  )
+  return {
+    totalIncome,
+    totalExpenses,
+    data: chartData.sort((a, b) => a.date.getTime() - b.date.getTime() ),
+  };
 }
 
 export default {

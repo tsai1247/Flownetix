@@ -37,7 +37,7 @@
     expenses: 0,
     flow: 0,
   });
-  const totalCount = ref(0);
+  const totalCount = ref(12);
 
   const averageValue = computed(() => {
     return {
@@ -48,15 +48,12 @@
   });
 
   onMounted(() => {
-    apis.cashFlow.getOneYearList().then(yearList => {
-      totalValue.value = yearList.reduce((sum, cur) => {
-        return {
-          income: sum.income + cur.income,
-          expenses: sum.expenses + cur.expenses,
-          flow: sum.flow + cur.income - cur.expenses,
-        }
-      }, { income: 0, expenses: 0, flow: 0 })
-      totalCount.value = yearList.length;
+    apis.cashFlow.getOneYearList().then(result => {
+      totalValue.value = {
+        income: result.totalIncome,
+        expenses: result.totalExpenses,
+        flow: result.totalIncome - result.totalExpenses,
+      }
     });
 
   });

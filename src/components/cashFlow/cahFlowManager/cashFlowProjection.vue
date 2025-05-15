@@ -38,8 +38,8 @@
   });
 
   onMounted(() => {
-    apis.cashFlow.getOneYearList().then(yearList => {
-      chartData.value = yearList.map(item => {
+    apis.cashFlow.getOneYearList().then(result => {
+      chartData.value = result.data.map(item => {
         return {
           ...item,
           xAxis: item.date.toLocaleString(
