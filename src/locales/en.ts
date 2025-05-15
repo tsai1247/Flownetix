@@ -8,9 +8,9 @@ export default {
     title: 'Cash Flow Management',
     subtitle: 'Track and manage your cash flows and recurring transactions',
     monthlyNewFlow: {
-      monthlyIncome: 'Monthly Income',
-      monthlyExpenses: 'Monthly Expenses',
-      newFlow: 'Net Flow',
+      monthlyIncome: 'Average Monthly Income',
+      monthlyExpenses: 'Average Monthly Expenses',
+      newFlow: 'Average Net Flow',
     },
     cashFlowManager: {
       cashFlowProjection: {
