@@ -55,6 +55,11 @@
     });
   });
 
+  const color = {
+    income: '#1B5E20',
+    expenses: '#B71C1C',
+  }
+
   const getToolTipHtml = (xAxis, keyList, valueList) => {
     return `
       <div style="margin: 0px 0 0;line-height:1;">
@@ -64,7 +69,7 @@
         ${keyList.reduce((sum, _, index) =>
           `${sum}
           <div style="margin: 10px 0 0;line-height:1;">
-            <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? '#B71C1C': '#1B5E20'};">
+            <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? color.income: color.expenses};">
             </span>
             <span style="float:right;margin-left:10px;font-size:14px;color:#666;font-weight:900">
               ${keyList[index]} ${valueList[index]}
@@ -153,7 +158,7 @@
             return 10;
           },
           itemStyle: {
-            color: '#B71C1C',
+            color: color.income,
           },
           data: chartData.value.reduce((sum, dataInaDay, index) => {
             dataInaDay.data.forEach(data => {
@@ -173,7 +178,7 @@
             return 10;
           },
           itemStyle: {
-            color: '#1B5E20',
+            color: color.expenses,
           },
           data: chartData.value.reduce((sum, dataInaDay, index) => {
             dataInaDay.data.forEach(data => {
