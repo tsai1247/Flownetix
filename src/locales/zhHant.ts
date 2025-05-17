@@ -9,6 +9,13 @@ export default {
     subtitle: '追蹤和管理您的現金流和定期交易',
     cashFlowSetting: {
       title: '選項',
+      subtitle: {
+        assetCurrency: '管理幣值',
+        colorConfig: '色彩偏好',
+      },
+      content: {
+        assetCurrency: '幣值',
+      },
     },
     cashFlowManager: {
       cashFlowProjection: {
@@ -21,7 +28,11 @@ export default {
         addNewFlow: {
           title: '新增現金流',
           flowName: '名稱',
-          flowType: '收入/支出',
+          flowType: {
+            title: '收入/支出',
+            income: '收入',
+            expenses: '支出',
+          },
           flowAmount: '金額',
           Currency: '貨幣',
           Date: '進出帳日期',

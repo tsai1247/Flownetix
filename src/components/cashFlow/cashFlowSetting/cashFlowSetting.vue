@@ -19,7 +19,7 @@
               v-model="currentCurrency"
               dense
               :items="currencies"
-              label="Asset Currency"
+              :label="$t('cashFlow.cashFlowSetting.content.assetCurrency')"
               outlined
               required
             />

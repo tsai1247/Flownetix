@@ -7,7 +7,7 @@ enum Interval {
 
 enum FlowType {
   Income,
-  Expense
+  Expenses
 }
 
 interface Frequency {

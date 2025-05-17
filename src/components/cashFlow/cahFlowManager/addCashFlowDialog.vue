@@ -19,10 +19,10 @@
             <v-select
               v-model="cashFlow.flowType"
               dense
-              :item-title="(item) => item[0]"
-              :item-value="(item) => item[1]"
-              :items="Object.entries(FlowType).filter(([_, value]) => !isNaN(Number(value)))"
-              :label="$t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.flowType')"
+              item-title="title"
+              item-value="value"
+              :items="flowTypeList"
+              :label="$t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.flowType.title')"
               outlined
               required
             />
@@ -104,11 +104,13 @@
 
 <script setup lang="ts">
   import { VDateInput } from 'vuetify/labs/VDateInput'
-  import { onMounted, ref, watch } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
   import apis from '../../../api';
   import type { CashFlow } from '../../../dataType';
   import { FlowType, Interval } from '../../../dataType';
   import { useAppStore } from '@/stores/app';
+  import { useI18n } from 'vue-i18n';
+  const { t } = useI18n();
   const store = useAppStore();
 
   const props = defineProps({
@@ -171,6 +173,16 @@
     per: 1,
     unit: Interval.Day,
   });
+
+  const originFlowTypeList = Object.entries(FlowType).filter(([_, value]) => !isNaN(Number(value)));
+
+  const flowTypeList = computed(() => {
+    return originFlowTypeList.map( item => ({
+      title: t(`cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.flowType.${item[0].toLowerCase()}`),
+      value: item[1],
+    }))
+  });
+
 
   const addCashFlow = () => {
     const newCashFlow = cashFlow.value;

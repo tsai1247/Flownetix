@@ -13,6 +13,9 @@ export default {
         assetCurrency: 'Asset Currency',
         colorConfig: 'Color Configuration',
       },
+      content: {
+        assetCurrency: 'Currency',
+      },
     },
     cashFlowManager: {
       cashFlowProjection: {
@@ -25,7 +28,11 @@ export default {
         addNewFlow: {
           title: 'Add Flow',
           flowName: 'Flow Name',
-          flowType: 'FlowType',
+          flowType: {
+            title: 'FlowType',
+            income: 'Income',
+            expenses: 'Expenses',
+          },
           flowAmount: 'FlowAmount',
           Currency: 'Currency',
           Date: 'Debit/Credit Date',

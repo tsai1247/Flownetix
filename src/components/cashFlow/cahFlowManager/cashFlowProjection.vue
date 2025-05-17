@@ -196,7 +196,7 @@
           },
           data: chartData.value.reduce((sum, dataInaDay, index) => {
             dataInaDay.data.forEach(data => {
-              if(data.flowType === FlowType.Expense) {
+              if(data.flowType === FlowType.Expenses) {
                 sum.push([index, data.name, data.amount])
               }
             });
