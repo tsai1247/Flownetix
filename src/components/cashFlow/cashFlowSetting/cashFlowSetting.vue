@@ -31,26 +31,16 @@
               {{ $t('cashFlow.cashFlowSetting.subtitle.colorConfig') }}
             </div>
             <v-radio-group v-model="selectedColorType" inline>
-              <v-radio class="mr-10" value="0">
+              <v-radio class="mr-5" value="0">
                 <template #label>
-                  <v-img
-                    aspect-ratio="16/9"
-                    cover
-                    :src="greenIncome"
-                    :width="130"
-                  />
-                  <!-- <img alt="Radio One" src="path/to/image1.png" style="width: 24px; height: 24px;"> -->
+                  <v-icon class="bg-teal-darken-1 pa-5 mr-2 rounded-lg" size="x-large">mdi-trending-up</v-icon>
+                  <v-icon class="bg-red-darken-1 pa-5 mr-2 rounded-lg" size="x-large">mdi-trending-down</v-icon>
                 </template>
               </v-radio>
               <v-radio value="1">
                 <template #label>
-                  <v-img
-                    aspect-ratio="16/9"
-                    cover
-                    :src="redIncome"
-                    :width="130"
-                  />
-                  <!-- <img alt="Radio Two" src="path/to/image2.png" style="width: 24px; height: 24px;"> -->
+                  <v-icon class="bg-red-darken-1 pa-5 mr-2 rounded-lg" size="x-large">mdi-trending-up</v-icon>
+                  <v-icon class="bg-teal-darken-1 pa-5 mr-2 rounded-lg" size="x-large">mdi-trending-down</v-icon>
                 </template>
               </v-radio>
             </v-radio-group>
@@ -64,8 +54,6 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue';
   import apis from '../../../api';
-  import greenIncome from '@/assets/greenIncome.png';
-  import redIncome from '@/assets/redIncome.png';
   import { useAppStore } from '@/stores/app';
   const store = useAppStore();
 
