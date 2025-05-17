@@ -72,12 +72,14 @@
 
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import { computed } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import apis from '../../../api';
   import { useI18n } from 'vue-i18n';
   import type { CashFlow } from '../../../dataType';
   import { useLocale } from 'vuetify'
   import { FlowType, Interval } from '../../../dataType';
+  import { useAppStore } from '@/stores/app';
+  const store = useAppStore();
   const { current } = useLocale()
   const { t } = useI18n();
 
@@ -88,7 +90,14 @@
     },
   })
 
-  const colorConfig = localStorage.getItem('selectedColorType') === '0';
+  const colorConfig = ref(true);
+  const updateColor = () => {
+    colorConfig.value = localStorage.getItem('selectedColorType') === '0';
+  }
+
+  watch(() => store.cashFlowColorConfig, () => {
+    updateColor()
+  }, { immediate: true })
 
   const emits = defineEmits(['update:cash-flow']);
 
@@ -130,6 +139,8 @@
     }).catch(error => {
       console.error('Error deleting asset:', error);
     });
+
+    store.onCashFlowChanged();
   }
 
 </script>

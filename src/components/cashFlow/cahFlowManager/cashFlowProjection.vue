@@ -17,10 +17,12 @@
 
 <script setup lang="ts">
   import VChart from 'vue-echarts';
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import apis from '../../../api';
   import { useLocale } from 'vuetify';
   import { FlowType } from '@/dataType';
+  import { useAppStore } from '@/stores/app';
+  const store = useAppStore();
 
   const { current } = useLocale();
   const chartData = ref([]);
@@ -37,7 +39,7 @@
     return result;
   });
 
-  onMounted(() => {
+  const updateChartDate = () => {
     apis.cashFlow.getOneYearList(localStorage.getItem('currentCurrency') ?? 'USD').then(result => {
       chartData.value = result.data.map(item => {
         return {
@@ -45,17 +47,32 @@
         }
       });
     });
+  };
+
+  watch(() => [store.cashFlowCurrency, store.cashFlow], () => {
+    updateChartDate();
+  }, { immediate: true })
+
+  const color = ref({
+    income: '#089981',
+    expenses: '#f23645',
   });
 
-  const color = localStorage.getItem('selectedColorType') === '0'
-    ? {
-      income: '#089981',
-      expenses: '#f23645',
-    }
-    : {
-      income: '#f23645',
-      expenses: '#089981',
-    }
+  const updateColor = () => {
+    color.value = localStorage.getItem('selectedColorType') === '0'
+      ? {
+        income: '#089981',
+        expenses: '#f23645',
+      }
+      : {
+        income: '#f23645',
+        expenses: '#089981',
+      }
+  }
+
+  watch(() => store.cashFlowColorConfig, () => {
+    updateColor();
+  }, { immediate: true })
 
   const getToolTipHtml = (xAxis, keyList, valueList) => {
     return `
@@ -66,7 +83,7 @@
         ${keyList.reduce((sum, _, index) =>
           `${sum}
           <div style="margin: 10px 0 0;line-height:1;">
-            <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? color.income: color.expenses};">
+            <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? color.value.income: color.value.expenses};">
             </span>
             <span style="float:right;margin-left:10px;font-size:14px;color:#666;font-weight:900">
               ${keyList[index]} ${valueList[index]}
@@ -155,7 +172,7 @@
             return 10;
           },
           itemStyle: {
-            color: color.income,
+            color: color.value.income,
           },
           data: chartData.value.reduce((sum, dataInaDay, index) => {
             dataInaDay.data.forEach(data => {
@@ -175,7 +192,7 @@
             return 10;
           },
           itemStyle: {
-            color: color.expenses,
+            color: color.value.expenses,
           },
           data: chartData.value.reduce((sum, dataInaDay, index) => {
             dataInaDay.data.forEach(data => {

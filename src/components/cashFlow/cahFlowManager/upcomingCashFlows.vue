@@ -15,7 +15,7 @@
         >
           {{ $t('cashFlow.cashFlowManager.upcomingCashFlows.addNewFlow.title') }}
         </v-btn>
-        <add-cash-flow-dialog v-model="showDialog" @update:cash-flow="updateCashFlow" />
+        <add-cash-flow-dialog v-model="showDialog" />
       </div>
     </v-card-title>
 
@@ -33,17 +33,15 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue'
+  import { ref, watch } from 'vue'
   import apis from '../../../api';
   import type { CashFlow } from '../../../dataType';
+  import { useAppStore } from '@/stores/app';
+  const store = useAppStore();
 
   const showDialog = ref(false);
 
   const cashFlowList = ref<CashFlow[]>([]);
-
-  onMounted(() => {
-    updateCashFlow();
-  })
 
   const updateCashFlow = () => {
     apis.cashFlow.getAll().then((data: CashFlow[]) => {
@@ -52,6 +50,9 @@
     })
   }
 
+  watch(() => [store.cashFlowCurrency, store.cashFlow], () => {
+    updateCashFlow()
+  }, { immediate: true })
 </script>
 
 <style scoped>

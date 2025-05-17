@@ -66,6 +66,8 @@
   import apis from '../../../api';
   import greenIncome from '@/assets/greenIncome.png';
   import redIncome from '@/assets/redIncome.png';
+  import { useAppStore } from '@/stores/app';
+  const store = useAppStore();
 
   const currencies = ref([]);
   const currentCurrency = ref('USD');
@@ -87,10 +89,12 @@
 
   watch(() => selectedColorType.value, () => {
     localStorage.setItem('selectedColorType', selectedColorType.value)
+    store.onCashFlowColorConfigChanged();
   })
 
   watch(() => currentCurrency.value, () => {
     localStorage.setItem('currentCurrency', currentCurrency.value)
+    store.onCashFlowCurrencyChanged();
   })
 
 </script>

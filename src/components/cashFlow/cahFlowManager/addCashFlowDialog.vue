@@ -108,6 +108,9 @@
   import apis from '../../../api';
   import type { CashFlow } from '../../../dataType';
   import { FlowType, Interval } from '../../../dataType';
+  import { useAppStore } from '@/stores/app';
+  const store = useAppStore();
+
   const props = defineProps({
     modelValue: {
       type: Boolean,
@@ -115,7 +118,7 @@
     },
   })
 
-  const emits = defineEmits(['update:modelValue', 'update:cash-flow'])
+  const emits = defineEmits(['update:modelValue'])
 
   const showDialog = ref(false)
 
@@ -187,7 +190,7 @@
 
     apis.cashFlow.add(newCashFlow).then(() => {
       showDialog.value = false;
-      emits('update:cash-flow');
+      store.onCashFlowChanged();
     }).catch(error => {
       console.error('Error adding cash flow:', error);
     });
