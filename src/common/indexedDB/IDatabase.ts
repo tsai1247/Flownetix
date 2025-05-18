@@ -1,8 +1,4 @@
-interface BaseDBDataType {
-  id: number | null;
-  cons_time: Date;
-  modi_time: Date;
-}
+import type { BaseDBDataType } from '@/dataType';
 
 interface ColumnDataType {
   key: string;
@@ -47,6 +43,13 @@ class IDatabase {
       };
       request.onsuccess = event => {
         this.db = (event.target as IDBOpenDBRequest).result;
+        if (!this.db!.objectStoreNames.contains(this.tableName)) {
+          this.db!.close();
+          IDatabase.version += 1;
+          localStorage.setItem('dbVersion', IDatabase.version.toString());
+          resolve(this.open());
+          return;
+        }
         resolve(this.db);
       };
       request.onerror = event => {

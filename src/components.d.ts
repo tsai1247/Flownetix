@@ -8,16 +8,28 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddCashFlowDialog: typeof import('./components/cashFlow/cahFlowManager/addCashFlowDialog.vue')['default']
     AddInstitution: typeof import('./components/assetManager/addInstitution/addInstitution.vue')['default']
     AddInstitutionDialog: typeof import('./components/assetManager/addInstitution/addInstitutionDialog.vue')['default']
     AddNewAsset: typeof import('./components/assetManager/addNewAsset/addNewAsset.vue')['default']
     AddNewAssetDialog: typeof import('./components/assetManager/addNewAsset/addNewAssetDialog.vue')['default']
+    CashFlow: typeof import('./components/cashFlow/cahFlowManager/cashFlow.vue')['default']
+    CashFlowAction: typeof import('./components/cashFlow/cahFlowManager/cashFlowAction.vue')['default']
+    CashFlowItem: typeof import('./components/cashFlow/cahFlowManager/cashFlowItem.vue')['default']
+    CashFlowProjection: typeof import('./components/cashFlow/cahFlowManager/cashFlowProjection.vue')['default']
+    CashFlowSetting: typeof import('./components/cashFlow/cashFlowSetting/cashFlowSetting.vue')['default']
+    copy: typeof import('./components/cashFlow/cahFlowManager/upcomingCashFlows copy.vue')['default']
     EditAssetDialog: typeof import('./components/assetManager/addNewAsset/editAssetDialog.vue')['default']
     FlowPathManagement: typeof import('./components/assetManager/flowPathManagement.vue')['default']
     ImportAssets: typeof import('./components/assetManager/importAssets/importAssets.vue')['default']
     ImportAssetsDialog: typeof import('./components/assetManager/importAssets/importAssetsDialog.vue')['default']
+    MonthlyExpenses: typeof import('./components/cashFlow/cashFlowSetting/monthlyExpenses.vue')['default']
+    MonthlyIncome: typeof import('./components/cashFlow/cashFlowSetting/monthlyIncome.vue')['default']
     MyAssets: typeof import('./components/assetManager/myAssets.vue')['default']
+    NetFlow: typeof import('./components/cashFlow/cashFlowSetting/netFlow.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UpcomingCashFlow: typeof import('./components/cashFlow/cahFlowManager/upcomingCashFlow.vue')['default']
+    UpcomingCashFlows: typeof import('./components/cashFlow/cahFlowManager/upcomingCashFlows.vue')['default']
   }
 }

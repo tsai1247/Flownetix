@@ -29,7 +29,11 @@ class BaseDB<T extends BaseDBDataType> {
       const maxId = allData.reduce((max, item) => Math.max(max, item.id), 0);
       this.db.close();
       return maxId + 1;
-    } finally {
+    }
+    catch {
+      return 1;
+    }
+    finally {
       this.releaseLock();
     }
   }
