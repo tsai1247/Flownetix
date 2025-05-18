@@ -10,7 +10,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 
 const router = createRouter({
-  history: createWebHistory('/flownetix'),
+  history: createWebHistory('/Flownetix'),
   routes: setupLayouts(routes),
 })
 
