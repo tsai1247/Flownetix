@@ -1,8 +1,4 @@
-interface BaseDBDataType {
-  id: number | null;
-  cons_time: Date;
-  modi_time: Date;
-}
+import type { BaseDBDataType } from '@/dataType';
 
 interface ColumnDataType {
   key: string;
@@ -47,6 +43,13 @@ class IDatabase {
       };
       request.onsuccess = event => {
         this.db = (event.target as IDBOpenDBRequest).result;
+        if (!this.db!.objectStoreNames.contains(this.tableName)) {
+          this.db!.close();
+          IDatabase.version += 1;
+          localStorage.setItem('dbVersion', IDatabase.version.toString());
+          resolve(this.open());
+          return;
+        }
         resolve(this.db);
       };
       request.onerror = event => {
@@ -76,7 +79,8 @@ class IDatabase {
   updateData (id: number, data: BaseDBDataType) {
     return new Promise((resolve, reject) => {
       const objectStore = this.db!.transaction(this.tableName, 'readwrite').objectStore(this.tableName);
-      const request = objectStore.put({ ...data, [this.pk]: id });
+      const clonedData = JSON.parse(JSON.stringify(data));
+      const request = objectStore.put({ ...clonedData, [this.pk]: id });
       request.onsuccess = () => {
         resolve(request.result);
       };

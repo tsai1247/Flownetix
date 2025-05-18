@@ -37,7 +37,7 @@
 
         <!-- Balance -->
         <template #item.balance="{ item }">
-          <span>{{ item.balance.toLocaleString(item.currency, {style:'currency',currency: item.currency}) }}</span>
+          <span>{{ item.currency }} {{ Number(item.balance).toLocaleString() }}</span>
         </template>
 
         <!-- Last Updated -->
@@ -47,7 +47,7 @@
 
         <!-- Actions -->
         <template #item.actions="{ item }">
-          <v-icon class="text-grey-darken-1 mx-1" disabled @click="() => editAsset(item)">mdi-pencil-off</v-icon>
+          <v-icon class="text-grey-darken-1 mx-1" @click="() => editAsset(item)">mdi-pencil</v-icon>
           <v-icon class="text-grey-darken-1 mx-1" @click="() => deleteAsset(item)">mdi-delete</v-icon>
           <v-icon class="text-grey-darken-1 mx-1" @click="() => openInNew(item)">mdi-open-in-new</v-icon>
         </template>
@@ -69,6 +69,8 @@
     updateAssets();
   });
 
+  const emits = defineEmits(['show-edit-asset-dialog']);
+
   const updateAssets = () => {
     apis.assets.getAll().then((data: Asset[]) => {
       assets.value = data;
@@ -80,9 +82,9 @@
   const showDialog = ref(false);
 
   const editAsset = (item: Asset) => {
-    // Logic to edit asset goes here
-    console.log('Edit asset:', item);
+    emits('show-edit-asset-dialog', item);
   };
+
   const deleteAsset = (item: Asset) => {
     // Logic to delete asset goes here
     apis.assets.remove(item).then(() => {

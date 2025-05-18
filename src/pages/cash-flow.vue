@@ -1,11 +1,55 @@
 <template>
   <div class="ma-0">
-    <div class="text-h4 font-weight-bold">{{ $t('cashFlow.title') }}</div>
+    <!-- title and subtitle -->
+    <div class="text-h4 font-weight-bold">{{ $t("cashFlow.title") }}</div>
+    <div class="text-subtitle-1 text-grey-darken-3">
+      {{ $t("cashFlow.subtitle") }}
+    </div>
+
+    <!-- main content -->
+    <v-container class="pa-0 mt-3" fluid>
+
+      <v-row class="ma-0 pa-0">
+        <v-col cols="8">
+          <cash-flow-setting />
+          <cash-flow-projection />
+        </v-col>
+        <v-col cols="4">
+          <upcoming-cash-flows />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script setup lang="ts">
-</script>
+  import { computed, onMounted, ref } from 'vue';
+  import apis from '../api';
+  const totalValue = ref({
+    income: 0,
+    expenses: 0,
+    flow: 0,
+  });
+  const totalCount = ref(12);
 
-<style scoped>
-</style>
+  const averageValue = computed(() => {
+    return {
+      income: totalValue.value.income * 1.0 / totalCount.value,
+      expenses: totalValue.value.expenses * 1.0 / totalCount.value,
+      flow:totalValue.value.flow * 1.0 / totalCount.value,
+    }
+  });
+
+  onMounted(() => {
+    apis.cashFlow.getOneYearList(localStorage.getItem('currentCurrency') ?? 'USD').then(result => {
+      totalValue.value = {
+        income: result.totalIncome,
+        expenses: result.totalExpenses,
+        flow: result.totalIncome - result.totalExpenses,
+      }
+    });
+
+  });
+
+</script>
+<style scoped></style>

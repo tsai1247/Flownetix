@@ -14,7 +14,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/nexus-finance/',
+  base: '/flownetix',
   plugins: [
     VueRouter({
       dts: 'src/typed-router.d.ts',

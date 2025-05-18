@@ -6,6 +6,40 @@ export default {
   cashFlow:{
     navigator:  'Cash Flow',
     title: 'Cash Flow Management',
+    subtitle: 'Track and manage your cash flows and recurring transactions',
+    cashFlowSetting: {
+      title: 'Options',
+      subtitle: {
+        assetCurrency: 'Asset Currency',
+        colorConfig: 'Color Configuration',
+      },
+      content: {
+        assetCurrency: 'Currency',
+      },
+    },
+    cashFlowManager: {
+      cashFlowProjection: {
+        title: 'Cash Flow Projection',
+      },
+      upcomingCashFlows: {
+        title: 'Cash Flows',
+        recur: 'Recur',
+        recurTooltip: 'Recurring every {interval}',
+        addNewFlow: {
+          title: 'Add Flow',
+          flowName: 'Flow Name',
+          flowType: {
+            title: 'FlowType',
+            income: 'Income',
+            expenses: 'Expenses',
+          },
+          flowAmount: 'FlowAmount',
+          Currency: 'Currency',
+          Date: 'Debit/Credit Date',
+          Recurring: 'Recurring every',
+        },
+      },
+    },
   },
   prediction:{
     navigator:  'Prediction',
@@ -31,6 +65,13 @@ export default {
       minutesAgo: 'minutes ago',
       secondsAgo: 'seconds ago',
       justNow: 'just now',
+    },
+    interval: {
+      day: '{per} day(s)',
+      week: '{per} week(s)',
+      month: '{per} month(s)',
+      quarter: '{per} quarter(s)',
+      year: '{per} year(s)',
     },
   },
   assetManager: {
@@ -83,17 +124,17 @@ export default {
       description: 'Define how money can flow between your accounts and the associated costs for each path.',
       instruction: {
         title: 'What are flow paths?',
-        description: 'Flow paths define how money moves between your accounts. Each path can have associated costs like transaction fees, exchange rate spreads, or time delays. Defining these accurately helps Nexus Finance model your financial flows more precisely.',
+        description: 'Flow paths define how money moves between your accounts. Each path can have associated costs like transaction fees, exchange rate spreads, or time delays. Defining these accurately helps Flownetix model your financial flows more precisely.',
       },
       action: 'Add Flow Path',
     },
   },
   home: {
-    title: 'Welcome to Nexus Finance',
+    title: 'Welcome to Flownetix',
     description: 'Your all-in-one financial management solution.',
   },
   about: {
-    title: 'About Nexus Finance',
+    title: 'About Flownetix',
     navigator: 'About',
     copyRight: {
       title: 'Notice of Copyright',

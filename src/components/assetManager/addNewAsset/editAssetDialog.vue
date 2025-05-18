@@ -10,6 +10,7 @@
             <v-text-field
               v-model="asset.name"
               dense
+              disabled
               label="Asset Name"
               outlined
               required
@@ -19,6 +20,7 @@
             <v-select
               v-model="asset.type"
               dense
+              disabled
               item-title="text"
               item-value="value"
               :items="assetTypes"
@@ -50,6 +52,7 @@
             <v-select
               v-model="asset.institution"
               dense
+              disabled
               item-title="name"
               :items="institutions"
               label="Institution"
@@ -65,7 +68,7 @@
         <v-btn color="blue darken-1" text @click="showDialog = false">
           {{ $t('common.cancel') }}
         </v-btn>
-        <v-btn color="blue darken-1" text @click="addNewAsset">
+        <v-btn color="blue darken-1" text @click="updateAsset">
           {{ $t('common.save') }}
         </v-btn>
       </v-card-actions>
@@ -98,7 +101,6 @@
     }
     if (newValue) {
       updateInstitutions();
-      clearAsset();
     }
   })
 
@@ -120,16 +122,6 @@
     } as Institution,
   } as Asset);
 
-  const clearAsset = () => {
-    asset.value = {
-      name: '',
-      type: assetTypes.value[0].value,
-      balance: 0,
-      currency: currencies.value[0].value,
-      institution: institutions.value[0],
-    } as Asset;
-  }
-
   const assetTypes = ref([
     { text: 'Stock', value: 'stock' },
     { text: 'Cash', value: 'cash' },
@@ -145,18 +137,26 @@
     });
   }
 
-  const addNewAsset = () => {
+  const updateAsset = () => {
     if (asset.value.name === '' || asset.value.type === '' || asset.value.balance <= 0 || asset.value.currency === '') {
       alert('Please fill in all fields correctly.');
       return;
     }
-    apis.assets.add(asset.value).then(() => {
+    apis.assets.update(asset.value).then(() => {
       showDialog.value = false;
       emits('update:assets');
     }).catch(error => {
       console.error('Error adding new asset:', error);
     });
   }
+
+  const fillAsset = (selectedAsset: Asset) => {
+    asset.value = selectedAsset;
+  }
+
+  defineExpose({
+    fillAsset,
+  })
 </script>
 
 <style scoped>

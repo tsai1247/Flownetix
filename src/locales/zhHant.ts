@@ -6,6 +6,40 @@ export default {
   cashFlow: {
     navigator: '現金流管理',
     title: '現金流管理',
+    subtitle: '追蹤和管理您的現金流和定期交易',
+    cashFlowSetting: {
+      title: '選項',
+      subtitle: {
+        assetCurrency: '管理幣值',
+        colorConfig: '色彩偏好',
+      },
+      content: {
+        assetCurrency: '幣值',
+      },
+    },
+    cashFlowManager: {
+      cashFlowProjection: {
+        title: '現金流預測',
+      },
+      upcomingCashFlows: {
+        title: '現金流',
+        recur: '週期',
+        recurTooltip: '每 {interval} 一次',
+        addNewFlow: {
+          title: '新增現金流',
+          flowName: '名稱',
+          flowType: {
+            title: '收入/支出',
+            income: '收入',
+            expenses: '支出',
+          },
+          flowAmount: '金額',
+          Currency: '貨幣',
+          Date: '進出帳日期',
+          Recurring: '週期現金流，每隔',
+        },
+      },
+    },
   },
   prediction: {
     navigator: '財務預測',
@@ -31,6 +65,20 @@ export default {
       minutesAgo: '分鐘前',
       secondsAgo: '秒前',
       justNow: '剛剛',
+    },
+    interval: {
+      day: '{per} 日',
+      week: '{per} 週',
+      month: '{per} 個月',
+      quarter: '{per} 季',
+      year: '{per} 年',
+    },
+    unit: {
+      day: '日',
+      week: '週',
+      month: '月',
+      quarter: '季',
+      year: '年',
     },
   },
   assetManager: {
@@ -83,17 +131,17 @@ export default {
       description: '定義資金如何在您的帳戶之間流動以及每條路徑的相關成本。',
       instruction: {
         title: '什麼是流路？',
-        description: '流路定義了資金如何在您的帳戶之間移動。每條路徑可能有相關成本，例如交易費用、匯率差或時間延遲。準確定義這些有助於 Nexus Finance 更精確地模擬您的財務流動。',
+        description: '流路定義了資金如何在您的帳戶之間移動。每條路徑可能有相關成本，例如交易費用、匯率差或時間延遲。準確定義這些有助於 Flownetix 更精確地模擬您的財務流動。',
       },
       action: '新增流路',
     },
   },
   home: {
-    title: '歡迎使用 Nexus Finance',
+    title: '歡迎使用 Flownetix',
     description: '您的全方位財務管理解決方案。',
   },
   about: {
-    title: '關於 Nexus Finance',
+    title: '關於 Flownetix',
     navigator: '關於',
     copyRight: {
       title: '版權聲明',

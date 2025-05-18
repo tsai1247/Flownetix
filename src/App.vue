@@ -38,7 +38,7 @@
       </div>
     </v-navigation-drawer>
     <v-main class="pa-0 ma-5">
-      <v-app-bar class="elevation-0 text-primary" color="secondary" prominent>
+      <v-app-bar class="elevation-0 text-primary" color="#FFFFFF" prominent>
         <v-toolbar-title>{{ title }}</v-toolbar-title>
         <v-spacer />
 
@@ -80,10 +80,19 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import { useLocale } from 'vuetify'
+  import { CanvasRenderer } from 'echarts/renderers';
+  import { LineChart, PieChart, ScatterChart } from 'echarts/charts';
+  import {
+    GridComponent,
+    LegendComponent,
+    TitleComponent,
+    TooltipComponent,
+  } from 'echarts/components';
+  import { use } from 'echarts/core';
   const { current } = useLocale()
-  const title = ref('Nexus Finance');
+  const title = ref('Flownetix');
   const isDrawerOpen = ref(true);
 
   const routeInfo = ref([
@@ -149,8 +158,27 @@
     return locale ? locale.title : 'English';
   });
 
+  onMounted(() => {
+    const savedCurrent = localStorage.getItem('current');
+    if (savedCurrent) {
+      current.value = savedCurrent;
+    }
+  })
   function changeLocale (locale: Locale) {
     current.value = locale.key;
+    localStorage.setItem('current', current.value);
   }
+
+
+  use([
+    CanvasRenderer,
+    PieChart,
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent,
+    LineChart,
+    GridComponent,
+    ScatterChart,
+  ]);
 </script>
 <style scoped></style>
