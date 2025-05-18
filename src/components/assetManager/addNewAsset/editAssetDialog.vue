@@ -78,7 +78,7 @@
 
 <script setup lang="ts">
   import { type Asset, type Institution } from '@/common/indexedDB'
-  import { ref, watch } from 'vue'
+  import { onMounted, ref, watch } from 'vue'
   import apis from '../../../api';
   const props = defineProps({
     modelValue: {
@@ -104,6 +104,7 @@
     }
   })
 
+  const currencies = ref<string[]>([]);
   onMounted(() => {
     apis.common.getCurrencyList().then(data => {
       currencies.value = data;
@@ -127,8 +128,6 @@
     { text: 'Cash', value: 'cash' },
     { text: 'Crypto', value: 'crypto' },
   ]);
-
-  const currencies = ref([]);
 
   const institutions = ref<Institution[]>([]);
   const updateInstitutions = () => {
