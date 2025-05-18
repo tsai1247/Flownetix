@@ -2,7 +2,7 @@
   "name": "flownetix",
   "private": true,
   "type": "module",
-  "version": "0.9.5",
+  "version": "0.10.0",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
