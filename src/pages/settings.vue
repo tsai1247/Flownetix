@@ -1,6 +1,6 @@
 <template>
   <div class="ma-0">
-    <h1>{{ $t('title.settings') }}</h1>
+    <div class="text-h4 font-weight-bold">{{ $t('settings.title') }}</div>
   </div>
 </template>
 
