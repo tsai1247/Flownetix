@@ -3,7 +3,7 @@ import BaseDB from './BaseDB';
 
 class CashFlowDB extends BaseDB<CashFlow> {
   constructor () {
-    const dbName = 'nexus-finance';
+    const dbName = 'flownetix';
     const tableName = 'cashflow';
     const pk = 'id';
     const columns = [

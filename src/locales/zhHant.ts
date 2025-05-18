@@ -131,17 +131,17 @@ export default {
       description: '定義資金如何在您的帳戶之間流動以及每條路徑的相關成本。',
       instruction: {
         title: '什麼是流路？',
-        description: '流路定義了資金如何在您的帳戶之間移動。每條路徑可能有相關成本，例如交易費用、匯率差或時間延遲。準確定義這些有助於 Nexus Finance 更精確地模擬您的財務流動。',
+        description: '流路定義了資金如何在您的帳戶之間移動。每條路徑可能有相關成本，例如交易費用、匯率差或時間延遲。準確定義這些有助於 Flownetix 更精確地模擬您的財務流動。',
       },
       action: '新增流路',
     },
   },
   home: {
-    title: '歡迎使用 Nexus Finance',
+    title: '歡迎使用 Flownetix',
     description: '您的全方位財務管理解決方案。',
   },
   about: {
-    title: '關於 Nexus Finance',
+    title: '關於 Flownetix',
     navigator: '關於',
     copyRight: {
       title: '版權聲明',

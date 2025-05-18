@@ -92,7 +92,7 @@
   } from 'echarts/components';
   import { use } from 'echarts/core';
   const { current } = useLocale()
-  const title = ref('Nexus Finance');
+  const title = ref('Flownetix');
   const isDrawerOpen = ref(true);
 
   const routeInfo = ref([

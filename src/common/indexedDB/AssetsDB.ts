@@ -12,7 +12,7 @@ interface Asset extends BaseDBDataType {
 
 class AssetsDB extends BaseDB<Asset> {
   constructor () {
-    const dbName = 'nexus-finance';
+    const dbName = 'flownetix';
     const tableName = 'assets';
     const pk = 'id';
     const columns = [
