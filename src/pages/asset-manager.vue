@@ -40,22 +40,24 @@
 
 <script setup lang="ts">
   import type { Asset } from '@/common/indexedDB';
+  import type EditAssetDialog from '@/components/assetManager/addNewAsset/editAssetDialog.vue';
+  import type MyAssets from '@/components/assetManager/myAssets.vue';
   import { ref } from 'vue'
 
   const showAddNewAssetDialog = ref(false)
   const showEditAssetDialog = ref(false)
-  const myAssetsRef = ref(null);
-  const editAssetRef = ref(null);
+  const myAssetsRef = ref<InstanceType<typeof MyAssets> | null>(null);
+  const editAssetRef = ref<InstanceType<typeof EditAssetDialog> | null>(null);
 
   const updateAssets = () => {
     if (myAssetsRef.value) {
-      myAssetsRef.value.updateAssets()
+      myAssetsRef.value?.updateAssets()
     }
   }
 
   const showEditDialog = (item: Asset) => {
     showEditAssetDialog.value = true;
-    editAssetRef.value.fillAsset(item);
+    editAssetRef.value?.fillAsset(item);
   }
 
 </script>

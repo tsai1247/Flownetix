@@ -57,12 +57,12 @@
   import { useAppStore } from '@/stores/app';
   const store = useAppStore();
 
-  const currencies = ref([]);
+  const currencies = ref<Array<string>>([]);
   const currentCurrency = ref('USD');
   const selectedColorType = ref('0');
   onMounted(() => {
     apis.cashFlow.getAll().then(data => {
-      currencies.value = data.reduce((sum, cur) => {
+      currencies.value = data.reduce((sum: Array<string>, cur) => {
         if (!sum.includes(cur.currency)) {
           sum.push(cur.currency)
         }

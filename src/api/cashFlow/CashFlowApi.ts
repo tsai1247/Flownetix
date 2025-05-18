@@ -59,8 +59,20 @@ function remove (cashFlow: CashFlow) {
   });
 }
 
+interface chartDataDetail {
+  name: string,
+  amount: number,
+  flowType: FlowType,
+}
+
+interface cashFlowChartDataType {
+  date: Date,
+  value: number,
+  data: Array<chartDataDetail>,
+}
+
 async function getOneYearList (currency: string) {
-  const chartData = [];
+  const chartData: Array<cashFlowChartDataType> = [];
   let totalIncome = 0;
   let totalExpenses = 0;
 
@@ -81,7 +93,7 @@ async function getOneYearList (currency: string) {
 
   const today = new Date();
   const Milliseconds_Per_Year = 365*24*60*60*1000;
-  const addData = cashFlow => {
+  const addData = (cashFlow: CashFlow) => {
     const targetDate = new Date(cashFlow.startDate);
     if ((targetDate.getTime() - today.getTime()) > Milliseconds_Per_Year) {
       return false;
@@ -159,3 +171,8 @@ export default {
   remove,
   getOneYearList,
 };
+
+export type {
+  chartDataDetail,
+  cashFlowChartDataType,
+}
