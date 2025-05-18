@@ -27,7 +27,7 @@
         Licensed under
         <a
           class="text-decoration-none on-surface"
-          href="https://github.com/tsai1247/flownetix/blob/main/LICENSE"
+          href="https://github.com/tsai1247/Flownetix/blob/main/LICENSE"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -43,7 +43,7 @@
     {
       title: 'GitHub',
       icon: `mdi-github`,
-      href: 'https://github.com/tsai1247/flownetix',
+      href: 'https://github.com/tsai1247/Flownetix',
     },
   ]
 </script>
