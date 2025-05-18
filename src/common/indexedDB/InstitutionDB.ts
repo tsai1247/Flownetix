@@ -8,7 +8,7 @@ interface Institution extends BaseDBDataType {
 
 class InstitutionDB extends BaseDB<Institution> {
   constructor () {
-    const dbName = 'nexus-finance';
+    const dbName = 'flownetix';
     const tableName = 'institutions';
     const pk = 'id';
     const columns = [

@@ -124,17 +124,17 @@ export default {
       description: 'Define how money can flow between your accounts and the associated costs for each path.',
       instruction: {
         title: 'What are flow paths?',
-        description: 'Flow paths define how money moves between your accounts. Each path can have associated costs like transaction fees, exchange rate spreads, or time delays. Defining these accurately helps Nexus Finance model your financial flows more precisely.',
+        description: 'Flow paths define how money moves between your accounts. Each path can have associated costs like transaction fees, exchange rate spreads, or time delays. Defining these accurately helps Flownetix model your financial flows more precisely.',
       },
       action: 'Add Flow Path',
     },
   },
   home: {
-    title: 'Welcome to Nexus Finance',
+    title: 'Welcome to Flownetix',
     description: 'Your all-in-one financial management solution.',
   },
   about: {
-    title: 'About Nexus Finance',
+    title: 'About Flownetix',
     navigator: 'About',
     copyRight: {
       title: 'Notice of Copyright',
