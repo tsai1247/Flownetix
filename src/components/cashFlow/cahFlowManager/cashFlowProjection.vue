@@ -22,14 +22,15 @@
   import { useLocale } from 'vuetify';
   import { FlowType } from '@/dataType';
   import { useAppStore } from '@/stores/app';
+  import type { cashFlowChartDataType } from '@/api/cashFlow/CashFlowApi';
   const store = useAppStore();
 
   const { current } = useLocale();
-  const chartData = ref([]);
+  const chartData = ref<Array<cashFlowChartDataType>>([]);
   const progressiveChartData = computed(() => {
-    const result = [];
+    const result: Array<cashFlowChartDataType> = [];
     for(let i=0; i<chartData.value.length; i++) {
-      const lastValue = i == 0 ? 0 : result[i-1].value;
+      const lastValue: number = i == 0 ? 0 : result[i-1].value;
 
       result.push({
         ...chartData.value[i],
@@ -74,13 +75,13 @@
     updateColor();
   }, { immediate: true })
 
-  const getToolTipHtml = (xAxis, keyList, valueList) => {
+  const getToolTipHtml = (xAxis: string, keyList: Array<string>, valueList: Array<number>) => {
     return `
       <div style="margin: 0px 0 0;line-height:1;">
         <div style="font-size:14px;color:#666;font-weight:400;line-height:1;">
           ${xAxis}
         </div>
-        ${keyList.reduce((sum, _, index) =>
+        ${keyList.reduce((sum: string, _: string, index: number) =>
           `${sum}
           <div style="margin: 10px 0 0;line-height:1;">
             <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${valueList[index] >= 0 ? color.value.income: color.value.expenses};">
@@ -110,14 +111,14 @@
       ],
       tooltip:{
         trigger: 'axis',
-        formatter: axisList => {
+        formatter: (axisList: Array<any>) => {
           if(axisList.length === 0) {
             return ''
           }
 
           if ( !isNaN(Number(axisList[0].value) ) ){
             // gridIndex 0
-            return getToolTipHtml(axisList[0].axisValue, [''], [axisList.map(axis => axis.value)]);
+            return getToolTipHtml(axisList[0].axisValue, [''], axisList.map(axis => axis.value));
           }
           else {
             // gridIndex 1
@@ -168,13 +169,13 @@
           yAxisIndex: 1,
           name: 'Income',
           type: 'scatter',
-          symbolSize (val) {
+          symbolSize (val: number) {
             return 10;
           },
           itemStyle: {
             color: color.value.income,
           },
-          data: chartData.value.reduce((sum, dataInaDay, index) => {
+          data: chartData.value.reduce((sum: Array<any>, dataInaDay: cashFlowChartDataType, index) => {
             dataInaDay.data.forEach(data => {
               if(data.flowType === FlowType.Income) {
                 sum.push([index, data.name, data.amount])
@@ -188,13 +189,13 @@
           yAxisIndex: 1,
           name: 'Expenses',
           type: 'scatter',
-          symbolSize (val) {
+          symbolSize (val: number) {
             return 10;
           },
           itemStyle: {
             color: color.value.expenses,
           },
-          data: chartData.value.reduce((sum, dataInaDay, index) => {
+          data: chartData.value.reduce((sum: Array<any>, dataInaDay: cashFlowChartDataType, index) => {
             dataInaDay.data.forEach(data => {
               if(data.flowType === FlowType.Expenses) {
                 sum.push([index, data.name, data.amount])

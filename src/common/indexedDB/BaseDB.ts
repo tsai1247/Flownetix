@@ -26,7 +26,7 @@ class BaseDB<T extends BaseDBDataType> {
     try {
       await this.db.open();
       const allData = await this.db.getAllData() as T[];
-      const maxId = allData.reduce((max, item) => Math.max(max, item.id), 0);
+      const maxId = allData.reduce((max, item) => Math.max(max, item.id ?? 0), 0);
       this.db.close();
       return maxId + 1;
     }
