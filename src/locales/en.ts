@@ -73,6 +73,13 @@ export default {
       quarter: '{per} quarter(s)',
       year: '{per} year(s)',
     },
+    unit: {
+      day: 'day(s)',
+      week: 'week(s)',
+      month: 'month(s)',
+      quarter: 'quarter(s)',
+      year: 'year(s)',
+    },
   },
   assetManager: {
     navigator: 'Asset Manager',
